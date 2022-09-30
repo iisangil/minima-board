@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "minima_board_yarn",
-    "slug": "minima_board_yarn",
+    "name": "minima-board",
+    "slug": "minima-board",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
