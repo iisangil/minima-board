@@ -20,6 +20,10 @@ export function HomeScreen({ navigation }) {
           title="Choose Display"
           onPress={() => navigation.navigate('Display')}
         />
+        <Button
+        title="Start Applicaton"
+        onPress={() => navigation.navigate("Application")}
+        />
       </ImageBackground>
       
     </View>
