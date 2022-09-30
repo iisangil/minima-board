@@ -9,20 +9,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { HomeScreen } from './src/screens/HomeScreen';
 import { BaseDisplayScreen } from './src/screens/BaseDisplayScreen.js';
-import { SettingsScreen, ThemeContext } from './src/screens/SettingsScreen.js';
+import { SettingsScreen } from './src/screens/SettingsScreen.js';
 import ApplicationScreen from './src/screens/ApplicationScreen';
+
+import { SettingsContext } from './src/context/settingsContext';
 
 import {styles} from './src/components/Styles.js';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [theme, setTheme] = React.useState('Light');
-  const themeData = { theme, setTheme };
+  const [settings, setSettings] = React.useState({"Theme": "Light"})
+  const settingsData = { settings, setSettings };
 
   return (
-    <ThemeContext.Provider value={themeData}>
-      <NavigationContainer theme={theme === 'Light' ? DefaultTheme : DarkTheme}>
+    <SettingsContext.Provider value={settingsData} >
+      <NavigationContainer theme={settings["Theme"] == "Light" ? DefaultTheme : DarkTheme}>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Settings" component={SettingsScreen} />
@@ -30,7 +32,7 @@ function App() {
           <Stack.Screen name="Application" component={ApplicationScreen} />
         </Stack.Navigator>
       </NavigationContainer>
-    </ThemeContext.Provider>
+      </SettingsContext.Provider>
   );
 }
 
