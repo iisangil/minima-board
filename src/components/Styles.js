@@ -21,4 +21,9 @@ export const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "center"
     },
+    rightText:{
+      flexDirection: 'row', 
+      alignItems: 'center',
+      marginHorizontal: 25
+    }
   })

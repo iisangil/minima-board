@@ -19,7 +19,7 @@ const FeaturesScreen = ({ navigation }) => {
     <View style={{ flex: 1, alignItems: 'center' }}>
       <Text style={styles.text}>Select Features</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Text>Emergency Calling</Text>
+        <Text>Emergency Calling     </Text>
         <Switch
         value={settings['Emergency']}
         onChange={selectFeature}
