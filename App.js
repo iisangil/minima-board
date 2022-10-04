@@ -12,6 +12,7 @@ import { BaseDisplayScreen } from './src/screens/BaseDisplayScreen.js';
 import { SettingsScreen } from './src/screens/SettingsScreen.js';
 import ApplicationScreen from './src/screens/ApplicationScreen';
 import FeaturesScreen from './src/screens/FeaturesScreen';
+import DeveloperScreen from './src/screens/DeveloperScreen';
 
 import { SettingsContext } from './src/context/settingsContext';
 
@@ -32,6 +33,7 @@ function App() {
           <Stack.Screen name="Display" component={BaseDisplayScreen} />
           <Stack.Screen name="Application" component={ApplicationScreen} />
           <Stack.Screen name="Features" component={FeaturesScreen} />
+          <Stack.Screen name="Developer" component={DeveloperScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       </SettingsContext.Provider>

@@ -24,6 +24,10 @@ export function HomeScreen({ navigation }) {
         title="Start Applicaton"
         onPress={() => navigation.navigate("Application")}
         />
+        <Button
+        title="Developer Tools"
+        onPress={() => navigation.navigate("Developer")}
+        />
       </ImageBackground>
       
     </View>

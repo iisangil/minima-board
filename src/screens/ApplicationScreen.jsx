@@ -3,6 +3,7 @@ import Emergency from '../components/Emergency';
 import Gas from '../components/Gas';
 import RPM from '../components/RPM';
 import Seatbelt from '../components/Seatbelt.jsx';
+import TirePressure from '../components/TirePressure';
 
 const ApplicationScreen = ({ navigation }) => {
   return (
@@ -11,6 +12,7 @@ const ApplicationScreen = ({ navigation }) => {
       <Gas/>
       <RPM/>
       <Seatbelt/>
+      <TirePressure />
       <Button
       title="Back to Home"
       onPress={() => navigation.navigate("Home")}
