@@ -9,36 +9,13 @@ const FeaturesScreen = ({ navigation }) => {
 
   const { settings, setSettings } = useContext(SettingsContext);
 
-  const selectEmergency = (feature) => {
+  const selectFeature = (feature) => {
     let newSettings = Object.assign({}, settings);
-    newSettings["Emergency"] = !newSettings["Emergency"]; 
+    newSettings[feature] = !newSettings[feature]; 
     setSettings(newSettings);
     console.log("NEWSETTINGS", newSettings);
   } 
   
-  const selectGas = (feature) => {
-    let newSettings = Object.assign({}, settings);
-    newSettings["Gas"] = !newSettings["Gas"]; 
-    setSettings(newSettings);
-    console.log("NEWSETTINGS", newSettings);
-  
-  } 
-
-  const selectRPM = (feature) => {
-    let newSettings = Object.assign({}, settings);
-    newSettings["RPM"] = !newSettings["RPM"]; 
-    setSettings(newSettings);
-    console.log("NEWSETTINGS", newSettings);
-  
-  } 
-
-  const selectSeatbelt = (feature) => {
-    let newSettings = Object.assign({}, settings);
-    newSettings["Seatbelt"] = !newSettings["Seatbelt"]; 
-    setSettings(newSettings);
-    console.log("NEWSETTINGS", newSettings);
-  
-  } 
 
   return (
     <View style={{ flex: 1, backgroundColor: "#ffeec2" }}>
@@ -48,38 +25,46 @@ const FeaturesScreen = ({ navigation }) => {
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Text style ={styles.headerText}>Emergency Calling</Text>
         <Switch
-        value={settings['Emergency']}
-        onChange={selectEmergency}
+          value={settings['Emergency']}
+          onChange={selectFeature}
+          onChange={() => selectFeature("Emergency")}
         />
       </View>
-
+      
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        
         <Text style ={styles.headerText}>Gas Alert                    </Text>
         <Switch
-        value={settings['Gas']}
-        onChange={selectGas}
+          value={settings['Gas']}
+          onChange={selectFeature}
+          onChange={() => selectFeature("Gas")}
         />
       </View>
 
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Text style ={styles.headerText}>RPM Alert                   </Text>
+
+        <Text style ={styles.headerText}>RPM Alert                  </Text>
         <Switch
-        value={settings['RPM']}
-        onChange={selectRPM}
+          value={settings['RPM']}
+          onChange={selectFeature}
+          onChange={() => selectFeature("RPM")}
         />
       </View>
 
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Text style ={styles.headerText}>Seatbelt Alert           </Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center',  }}>
+        <Text style ={styles.headerText}>Seatbelt Alert          </Text>
         <Switch
-        value={settings['Seatbelt']}
-        onChange={selectSeatbelt}
+          value={settings['Seatbelt']}
+          onChange={selectFeature}
+          onChange={() => selectFeature("Seatbelt")}
         />
       </View>
 
+      
       <View style = {styles.button}>
         <Button title='Back to Home' onPress={() => navigation.navigate('Home')} />
       </View>
+      
     </View>
   )
 }
