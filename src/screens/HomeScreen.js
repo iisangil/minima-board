@@ -9,7 +9,7 @@ const bkimage = { uri: "https://img.freepik.com/free-vector/paper-style-white-mo
 
 export function HomeScreen({ navigation }) {
   return (
-    <View style={{backgroundColor: '#FFCB05', flex:1}}>
+    <View style={{backgroundColor: '#FFCB05', flex: 1}}>
       <ImageBackground source={bkimage} resizeMode="cover" style={styles.image}>
         <Text style ={styles.text}>Minima Board</Text>
         <Button
