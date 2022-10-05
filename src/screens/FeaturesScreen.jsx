@@ -26,7 +26,6 @@ const FeaturesScreen = ({ navigation }) => {
         <Text style ={styles.headerText}>Emergency Calling</Text>
         <Switch
           value={settings['Emergency']}
-          onChange={selectFeature}
           onChange={() => selectFeature("Emergency")}
         />
       </View>
@@ -36,7 +35,6 @@ const FeaturesScreen = ({ navigation }) => {
         <Text style ={styles.headerText}>Gas Alert                    </Text>
         <Switch
           value={settings['Gas']}
-          onChange={selectFeature}
           onChange={() => selectFeature("Gas")}
         />
       </View>
@@ -46,7 +44,6 @@ const FeaturesScreen = ({ navigation }) => {
         <Text style ={styles.headerText}>RPM Alert                  </Text>
         <Switch
           value={settings['RPM']}
-          onChange={selectFeature}
           onChange={() => selectFeature("RPM")}
         />
       </View>
@@ -55,7 +52,6 @@ const FeaturesScreen = ({ navigation }) => {
         <Text style ={styles.headerText}>Seatbelt Alert          </Text>
         <Switch
           value={settings['Seatbelt']}
-          onChange={selectFeature}
           onChange={() => selectFeature("Seatbelt")}
         />
       </View>
