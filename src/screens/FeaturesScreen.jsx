@@ -56,11 +56,19 @@ const FeaturesScreen = ({ navigation }) => {
         />
       </View>
 
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Text style ={styles.headerText}>Tire Pressure Alert</Text>
+          <Switch
+          value={settings['Tire Pressure']}
+          onChange={() => selectFeature("Tire Pressure")}
+          />
+      </View>
+
       
       <View style = {styles.button}>
         <Button title='Back to Home' onPress={() => navigation.navigate('Home')} />
       </View>
-      
+    
     </View>
   )
 }
