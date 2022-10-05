@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, StyleSheet, ImageBackground} from 'react-native';
+import { View, Text, Button, StyleSheet, ImageBackground, StatusBar} from 'react-native';
 
 export const styles = StyleSheet.create({
     text: {
@@ -17,8 +17,24 @@ export const styles = StyleSheet.create({
       justifyContent: 'center'
       
     }, 
+    headerText: {
+      color: "black",
+      fontSize: 20,
+      lineHeight: 50,
+      fontWeight: "bold",
+      alignSelf: "left",
+      marginHorizontal: 50
+    },
     image: {
       flex: 1,
       justifyContent: "center"
     },
+    button:{
+      alignSelf: 'center',
+      position: 'absolute',
+      bottom: 35
+    }
+    
+
+
   })
