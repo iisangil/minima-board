@@ -11,7 +11,7 @@ const Emergency = () => {
   }
 
   return settings['Emergency'] ? (
-    <AntDesign name='phone' size={24} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={callEmergency} />
+    <AntDesign name='phone' size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={callEmergency} />
   ) : <></>;
 }
 
