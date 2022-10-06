@@ -49,7 +49,7 @@ const FeaturesScreen = ({ navigation }) => {
       </View>
 
       <View style={{ flexDirection: 'row', alignItems: 'center',  }}>
-        <Text style ={styles.headerText}>Seatbelt Alert          </Text>
+        <Text style ={styles.headerText}>Seatbelt Alert</Text>
         <Switch
           value={settings['Seatbelt']}
           onChange={() => selectFeature("Seatbelt")}

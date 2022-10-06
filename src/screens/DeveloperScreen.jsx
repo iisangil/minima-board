@@ -1,7 +1,10 @@
 import { useContext } from 'react';
-import { View, Text, Button, TextInput} from 'react-native';
+import { View, Text, Button, TextInput } from 'react-native';
 import { SettingsContext } from '../context/settingsContext';
 import { updateTirePressure } from '../components/TirePressure';
+import { updateGasLevel } from '../components/Gas';
+import { updateRPM } from '../components/RPM';
+import { updateSeatbelt } from '../components/Seatbelt';
 
 import { styles } from '../components/Styles';
 
@@ -10,6 +13,25 @@ const DeveloperScreen = ({ navigation }) => {
 
   const handleTirePressure = (pressure) => {
     updateTirePressure(pressure)
+  }
+  const handleGasLevel = (gas) => {
+    updateGasLevel(gas)
+  }
+  const handleRPM = (rpm) => {
+    updateRPM(rpm)
+  }
+  const handleSeatbelt = (isOn) => {
+    console.log("Seatbelt on: ", isSeatbeltOn)
+    updateSeatbelt(isSeatbeltOn)
+  }
+
+  // Sets all values to numbers that would set off alerts and goes to the app
+  const turnOnAllAlerts = () => {
+    updateTirePressure(25)
+    updateGasLevel(20)
+    updateRPM(3000)
+    updateSeatbelt(false)
+    navigation.navigate('Application')
   }
 
   return (
@@ -23,7 +45,35 @@ const DeveloperScreen = ({ navigation }) => {
                 keyboardType="numeric"
             />
         </View>
-      <Button title='Back to Home' onPress={() => navigation.navigate('Home')} />
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TextInput
+                style={styles.input}
+                onChangeText={handleGasLevel}
+                placeholder="Gas Level %"
+                keyboardType="numeric"
+            />
+        </View>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TextInput
+                style={styles.input}
+                onChangeText={handleRPM}
+                placeholder="RPMs"
+                keyboardType="numeric"
+            />
+        </View>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Button
+            title="Seatbelt On"
+            onPress={() => handleSeatbelt(true)}
+            />
+            <Button
+            title="Seatbelt Off"
+            onPress={() => handleSeatbelt(false)}
+            />
+        </View>
+      <Button title='Go To Dashboard' onPress={() => navigation.navigate("Application")} />
+      <Button title='Turn on All Alerts' onPress={turnOnAllAlerts}/>
+      <Button title='Back to Home' onPress={() => navigation.navigate("Home")} />
     </View>
   )
 }
