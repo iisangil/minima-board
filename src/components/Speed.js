@@ -5,7 +5,7 @@ import {
   NavigationContainer 
 } from '@react-navigation/native';
 
-export function SpeedDisplay(){
+function SpeedDisplay(){
   // State to store count value
   const [count, setCount] = useState(0);
 
@@ -22,13 +22,21 @@ export function SpeedDisplay(){
   };
   
   return (
-    <NavigationContainer>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text> {count} mph </Text>
-      <button onClick={incrementCount}>increment speed</button>
-      <button onClick={decrementCount}>decrement speed</button>
-      </View>
-    </NavigationContainer>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text> {count} mph </Text>
+    <Button
+          title="Increment Speed"
+          onPress={() => incrementCount()}
+        />
+    <Button
+        title="Decrement Speed"
+        onPress={() => decrementCount()}
+    />
+    {/* <button onClick={incrementCount}>increment speed</button>
+    <button onClick={decrementCount}>decrement speed</button> */}
+    </View>
 
   );
 }
+
+export default SpeedDisplay;
