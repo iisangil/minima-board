@@ -24,8 +24,16 @@ function SpeedDisplay(){
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <Text> {count} mph </Text>
-    <button onClick={incrementCount}>increment speed</button>
-    <button onClick={decrementCount}>decrement speed</button>
+    <Button
+          title="Increment Speed"
+          onPress={() => incrementCount()}
+        />
+    <Button
+        title="Decrement Speed"
+        onPress={() => decrementCount()}
+    />
+    {/* <button onClick={incrementCount}>increment speed</button>
+    <button onClick={decrementCount}>decrement speed</button> */}
     </View>
 
   );
