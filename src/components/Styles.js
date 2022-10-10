@@ -12,6 +12,12 @@ export const styles = StyleSheet.create({
       fontWeight: "bold",
       textAlign: "center",
     },
+    subText: {
+      color: "black",
+      fontSize: 14,
+      lineHeight: 84,
+      textAlign: "center",
+    },
     titleText:{
       fontSize: 50,
       fontWeight: "bold",
