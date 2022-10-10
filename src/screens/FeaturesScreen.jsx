@@ -164,13 +164,6 @@ const FeaturesScreen = ({ navigation }) => {
         globalTextStyle={{ fontFamily }}
         // scrollViewProps={{}}
       />
-      <View style={{ flexDirection: 'row', alignItems: 'center',  }}>
-        <Text style ={styles.headerText}>Seatbelt Alert</Text>
-        <Switch
-          value={settings['Seatbelt']}
-          onChange={() => selectFeature("Seatbelt")}
-        />
-      </View>
 
     </View>
   )
