@@ -11236,6 +11236,11 @@ react-native-settings-screen@^2.2.1:
   dependencies:
     styled-components "^3.4.9"
 
+react-native-sortable-grid@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-sortable-grid/-/react-native-sortable-grid-2.0.0.tgz#61129a4614a93b6d3ed1693a7485a036f986ce53"
+  integrity sha512-il+jdvQnkL5OmPKXTZ3nGSHMDH3V0KuylM5vAqpz7L+nfKC/SQFcIgFV6s6jbYQnjBe0LtrbLbQ+jMRtdZr0ow==
+
 react-native@^0.69.6:
   version "0.69.6"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.69.6.tgz"

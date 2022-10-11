@@ -10,9 +10,7 @@ const Emergency = () => {
     Linking.openURL(`tel:911`);
   }
 
-  return settings['Emergency'] ? (
-    <AntDesign name='phone' size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={callEmergency} />
-  ) : <></>;
+  return <AntDesign name='phone' size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={callEmergency} />
 }
 
 export default Emergency;

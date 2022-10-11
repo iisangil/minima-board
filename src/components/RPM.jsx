@@ -22,7 +22,7 @@ const RPM = () => {
     console.log("RPM: ", currentRPM);
   }
 
-  return (settings['RPM'] && isHigh) ? (
+  return isHigh ? (
     <View>    
       <FontAwesome name="tachometer" size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={rpmInfo}>
         <Text style={styles.text}> {currentRPM}</Text>

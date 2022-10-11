@@ -17,7 +17,7 @@ const Seatbelt = () => {
     console.log("Seatbelt: ", isSeatbeltOn);
   }
 
-  return (settings['Seatbelt'] && !isSeatbeltOn) ? (
+  return !isSeatbeltOn ? (
     <View>    
       <MaterialCommunityIcons name="seatbelt" size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={seatbeltInfo}/>
     </View>
