@@ -43,6 +43,11 @@ export const styles = StyleSheet.create({
       position: 'absolute',
       bottom: 35
     },
+    bottomscreen:{
+      lignSelf: 'center',
+      position: 'absolute',
+      bottom: 70
+    },
     input: {
       height: 40, 
       borderColor: 'gray', 
@@ -96,5 +101,9 @@ export const styles = StyleSheet.create({
       fontFamily,
       color: '#999',
       fontSize: 14,
+    },
+    homeScreen:{
+      flex: 1,
+      paddingTop: 435
     }
   })

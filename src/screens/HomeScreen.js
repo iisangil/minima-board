@@ -5,29 +5,36 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import {styles} from '../components/Styles.js';
 
-const bkimage = { uri: "https://img.freepik.com/free-vector/paper-style-white-monochrome-background_52683-66444.jpg?w=2000"};
+// const bkimage = { uri: "https://media.giphy.com/media/UfACric1lpLgdP3wtC/giphy.gif"};
+import bkimage from '../images/minima_board.gif';
 
 export function HomeScreen({ navigation }) {
   return (
-    <View style={{backgroundColor: '#FFCB05', flex: 1}}>
+    <View style={{ flex: 1}}>
       <ImageBackground source={bkimage} resizeMode="cover" style={styles.image}>
-        <Text style ={styles.text}>Minima Board</Text>
-        <Button
-          title="Change Settings"
-          onPress={() => navigation.navigate('Settings')}
-        />
-        <Button
-          title="Choose Display"
-          onPress={() => navigation.navigate('Display')}
-        />
-        <Button
-        title="Start Applicaton"
-        onPress={() => navigation.navigate("Application")}
-        />
-        <Button
-        title="Developer Tools"
-        onPress={() => navigation.navigate("Developer")}
-        />
+        
+        <View style={styles.homeScreen}>
+          <Button
+            title="Change Settings"
+            onPress={() => navigation.navigate('Settings')}
+          />
+          <Button
+            title="Choose Display"
+            onPress={() => navigation.navigate('Display')}
+          />
+          <Button
+          title="Start Applicaton"
+          onPress={() => navigation.navigate("Application")}
+          />
+        </View>
+        
+        <View style={styles.button}>
+            <Button
+            title="Developer Tools"
+            onPress={() => navigation.navigate("Developer")}
+            />
+        </View>
+        
       </ImageBackground>
       
     </View>
