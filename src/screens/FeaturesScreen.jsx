@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { View, Switch, Text, Button, SectionList, SafeAreaView, StatusBar, Platform, RefreshControl } from 'react-native';
-import { SettingsContext } from '../context/settingsContext';
+import { SettingsContext, storage } from '../context/settingsContext';
 
 import { styles } from '../components/Styles';
 import Icon from 'react-native-vector-icons/Entypo'
@@ -29,6 +29,11 @@ const FeaturesScreen = ({ navigation }) => {
     newSettings[feature] = !newSettings[feature]; 
     setSettings(newSettings);
     console.log("NEWSETTINGS", newSettings);
+
+    storage.save({
+      key: 'settings',
+      data: newSettings
+    });
   } 
 
   return (

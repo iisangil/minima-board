@@ -15,7 +15,7 @@ import ApplicationScreen from './src/screens/ApplicationScreen';
 import FeaturesScreen from './src/screens/FeaturesScreen';
 import DeveloperScreen from './src/screens/DeveloperScreen';
 
-import { SettingsContext } from './src/context/settingsContext';
+import { SettingsContext, storage } from './src/context/settingsContext';
 
 import {styles} from './src/components/Styles.js';
 
@@ -39,6 +39,18 @@ const Stack = createNativeStackNavigator();
 function App() {
   const [settings, setSettings] = React.useState({"Theme": "Light"})
   const settingsData = { settings, setSettings };
+
+  storage.load({
+    key: 'settings',
+    autoSync: true
+  }).then(ret => {
+    setSettings(ret)
+  })
+  .catch(err => {
+    // any exception including data not found
+    // goes to catch()
+    console.warn(err.message);
+  });
 
   return (
     <SettingsContext.Provider value={settingsData} >
