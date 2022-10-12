@@ -7,6 +7,7 @@ import RPM from '../components/RPM';
 import Seatbelt from '../components/Seatbelt.jsx';
 import TirePressure from '../components/TirePressure';
 import { SettingsContext } from '../context/settingsContext';
+import SpeedDisplay from '../components/Speed';
 
 const ApplicationScreen = ({ navigation }) => {
   const { settings } = useContext(SettingsContext);
@@ -20,7 +21,8 @@ const ApplicationScreen = ({ navigation }) => {
     'Button': <Button
               title="Back to Home"
               onPress={() => navigation.navigate("Home")}
-              />
+              />,
+    'Speed': <SpeedDisplay />,
   };
 
   const dataArray = [
@@ -29,6 +31,7 @@ const ApplicationScreen = ({ navigation }) => {
     'RPM',
     'Seatbelt',
     'Button',
+    'Speed'
   ];
 
   const [ dataState, setData ] = useState(dataArray);
@@ -36,7 +39,7 @@ const ApplicationScreen = ({ navigation }) => {
   const renderComponent = (item, index) => {
     console.log(item, settings[item])
     console.log('data state', dataState);
-    if (settings[item] || item == 'Button') {
+    if (settings[item] || item == 'Button' || item == 'Speed') {
       return (
         <View style={{
           width: width / 3, height: height / 3, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
@@ -57,7 +60,7 @@ const ApplicationScreen = ({ navigation }) => {
       marginChildrenRight={10}
       marginChildrenLeft = {10}
       marginChildrenTop = {10}
-      childrenHeight={width / 3}
+      childrenHeight={height / 6}
       onDataChange = {(data)=>{
         if (data.length != dataState.length) {
           setData(data);
