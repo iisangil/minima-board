@@ -22,7 +22,7 @@ const Gas = () => {
     console.log("Gas Level: ", currentGas);
   }
 
-  return (settings['Gas'] && isLow) ? (
+  return isLow ? (
     <View>    
       <FontAwesome5 name="gas-pump" size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={gasInfo}>
         <Text style={styles.text}> {currentGas}</Text>

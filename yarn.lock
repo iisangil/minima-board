@@ -11179,6 +11179,11 @@ react-native-codegen@^0.69.2:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-drag-sort@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/react-native-drag-sort/-/react-native-drag-sort-2.4.4.tgz#7c7aeea8729423a920b8db5900ea3c704ee1ff29"
+  integrity sha512-MixkgMzybt8tn9m850YK5VOSlicytV41mOp/b1gAE7cK94bou27ApvVJH9oCM61vY5EN6g9VT5PwLOahbYc+BQ==
+
 react-native-gesture-handler@~2.5.0:
   version "2.5.0"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.5.0.tgz"
@@ -11235,6 +11240,11 @@ react-native-settings-screen@^2.2.1:
   integrity sha512-qmcO+CJyRAbuTeON/IvJy5CCK7dXz8EopwzREhmkrg5wsUPNlZLIU0JqsicbxA4oZ0pMYA2cwPUUBAb+dmMALQ==
   dependencies:
     styled-components "^3.4.9"
+
+react-native-sortable-grid@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-sortable-grid/-/react-native-sortable-grid-2.0.0.tgz#61129a4614a93b6d3ed1693a7485a036f986ce53"
+  integrity sha512-il+jdvQnkL5OmPKXTZ3nGSHMDH3V0KuylM5vAqpz7L+nfKC/SQFcIgFV6s6jbYQnjBe0LtrbLbQ+jMRtdZr0ow==
 
 react-native@^0.69.6:
   version "0.69.6"

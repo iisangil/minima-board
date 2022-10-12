@@ -22,7 +22,7 @@ const TirePressure = () => {
     console.log("Tire Pressure: ", currentPressure);
   }
 
-  return (settings['Tire Pressure'] && isLow) ? (
+  return isLow ? (
     <MaterialCommunityIcons name="car-tire-alert" size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={tirePressureInfo} />
   ) : <></>;
 }

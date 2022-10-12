@@ -1,11 +1,77 @@
-import { View, Button } from 'react-native';
+import { useContext, useState } from 'react';
+import { View, Button, Dimensions } from 'react-native';
+import { DragSortableView } from 'react-native-drag-sort';
 import Emergency from '../components/Emergency';
 import Gas from '../components/Gas';
 import RPM from '../components/RPM';
 import Seatbelt from '../components/Seatbelt.jsx';
 import TirePressure from '../components/TirePressure';
+import { SettingsContext } from '../context/settingsContext';
 
 const ApplicationScreen = ({ navigation }) => {
+  const { settings } = useContext(SettingsContext);
+  const { width, height } = Dimensions.get('window')
+
+  const components = {
+    'Emergency': <Emergency />,
+    'Gas': <Gas />,
+    'RPM': <RPM />,
+    'Seatbelt': <Seatbelt />,
+    'Button': <Button
+              title="Back to Home"
+              onPress={() => navigation.navigate("Home")}
+              />
+  };
+
+  const dataArray = [
+    'Emergency',
+    'Gas',
+    'RPM',
+    'Seatbelt',
+    'Button',
+  ];
+
+  const [ dataState, setData ] = useState(dataArray);
+
+  const renderComponent = (item, index) => {
+    console.log(item, settings[item])
+    console.log('data state', dataState);
+    if (settings[item] || item == 'Button') {
+      return (
+        <View style={{
+          width: width / 3, height: height / 3, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+        }}>
+          {components[item]}
+        </View>
+      )
+    }
+  }
+  
+  return (
+    <View>
+      <DragSortableView
+      dataSource={dataState}
+      parentWidth={width}
+      childrenWidth={width / 3}
+      marginChildrenBottom={10}
+      marginChildrenRight={10}
+      marginChildrenLeft = {10}
+      marginChildrenTop = {10}
+      childrenHeight={width / 3}
+      onDataChange = {(data)=>{
+        if (data.length != dataState.length) {
+          setData(data);
+        }
+      }}
+      renderItem={renderComponent}
+      keyExtractor={item => item}
+      itemsPerRow={2}
+      dragActivationTreshold={300}
+    />
+    </View>
+  )
+
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Emergency />
@@ -13,10 +79,7 @@ const ApplicationScreen = ({ navigation }) => {
       <RPM/>
       <Seatbelt/>
       <TirePressure />
-      <Button
-      title="Back to Home"
-      onPress={() => navigation.navigate("Home")}
-      />
+
     </View>
   )
 }
