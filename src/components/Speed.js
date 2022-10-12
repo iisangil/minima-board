@@ -20,14 +20,16 @@ function SpeedDisplay(){
       setCount(count - 1);
     }
   };
+
+  const color = count < 15 ? 'green' : count > 20 ? 'red' : 'orange';
   
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text> {count} mph </Text>
+    <Text style={{ fontSize: '40px', fontWeight: 'bold', color: color, }}> {count} mph </Text>
     <Button
-          title="Increment Speed"
-          onPress={() => incrementCount()}
-        />
+      title="Increment Speed"
+      onPress={() => incrementCount()}
+    />
     <Button
         title="Decrement Speed"
         onPress={() => decrementCount()}
