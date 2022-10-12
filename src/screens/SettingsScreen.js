@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, Button, StyleSheet, ImageBackground} from 'react-native';
-import { SettingsContext } from '../context/settingsContext';
+import { SettingsContext, storage } from '../context/settingsContext';
 
 import { styles } from '../components/Styles';
 
@@ -11,6 +11,11 @@ export function SettingsScreen({ navigation }) {
     let newSettings = Object.assign({}, settings);
     newSettings["Theme"] = settings["Theme"] == "Light" ? "Dark" : "Light";
     setSettings(newSettings);
+
+    storage.save({
+      key: 'settings',
+      data: newSettings
+    });
   }
 
   return (
