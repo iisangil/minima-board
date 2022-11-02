@@ -18,6 +18,11 @@
       "**/*"
     ],
     "ios": {
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses the GPS location to calcualte speed.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses the GPS location to calcualte speed.",
+        "NSLocationAlwaysUsageDescription": "This app has location always in use."
+      },
       "supportsTablet": true
     },
     "android": {
