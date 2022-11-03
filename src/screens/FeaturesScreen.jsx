@@ -4,7 +4,9 @@ import { SettingsContext, storage } from '../context/settingsContext';
 
 import { styles } from '../components/Styles';
 import Icon from 'react-native-vector-icons/Entypo'
+import PickerComponent from '../components/ColorPicker';
 import {SettingsScreen, SettingsData, Chevron} from 'react-native-settings-screen';
+import ColorPicker from 'react-native-wheel-color-picker';
 
 const FeaturesScreen = ({ navigation }) => {
   state = {
@@ -18,11 +20,21 @@ const FeaturesScreen = ({ navigation }) => {
   const renderHero = () => (
     <View style={styles.heroContainer}>
       <View style={{ flex: 1 }}>
-        <Text style={styles.heroTitle}>Current User</Text>
+        <Text style={styles.heroTitle}>Settings </Text>
       </View>
-      <Chevron />
     </View>
   )
+
+  const changeTheme = () => {
+    let newSettings = Object.assign({}, settings);
+    newSettings["Theme"] = settings["Theme"] == "Light" ? "Dark" : "Light";
+    setSettings(newSettings);
+
+    storage.save({
+      key: 'settings',
+      data: newSettings
+    });
+  }
 
   const selectFeature = (feature) => {
     let newSettings = Object.assign({}, settings);
@@ -43,6 +55,29 @@ const FeaturesScreen = ({ navigation }) => {
       <SettingsScreen
         data={[
           { type: 'CUSTOM_VIEW', key: 'hero', render: renderHero },
+
+          {
+            type: 'SECTION',
+            header: 'Visual Settings'.toUpperCase(),
+            rows: [
+              {
+                title: 'Dark Mode',
+                renderAccessory:() => <Switch
+                    value={settings['Theme']}
+                    onChange={() => changeTheme("Theme")}
+                  />
+                
+                // <Button title="Switch Theme" onPress={changeTheme} />
+              },
+              {
+                title: 'Customize Colors',
+                subtitle: 'Colors for alerts, backgrounds',
+                renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('ColorCustomization')} />
+              },
+ 
+            ],
+          },
+
           {
             type: 'SECTION',
             header: 'Alert Settings'.toUpperCase(),
@@ -127,26 +162,28 @@ const FeaturesScreen = ({ navigation }) => {
             ],
           },
           
-          {
-            type: 'SECTION',
-            header: 'Color Customization'.toUpperCase(),
-            rows: [
+          // {
+          //   type: 'SECTION',
+          //   header: 'Color Customization'.toUpperCase(),
+          //   rows: [
 
-              {
-                title: 'Background Color',
-                renderAccessory: () => (
-                  <View
-                    style={{
-                      width: 30,
-                      height: 30,
-                      backgroundColor: 'blue',
-                    }}
-                  />
-                ),
-                showDisclosureIndicator: true,
-              }
-            ],
-          },
+          //     {
+          //       title: 'Background Color',
+          //       // renderAccessory: () => (
+          //       //   <View
+          //       //     style={{
+          //       //       width: 30,
+          //       //       height: 30,
+          //       //       backgroundColor: 'blue',
+          //       //     }}
+          //       //   />
+          //       // ),
+          //       showDisclosureIndicator: false, 
+          //     },
+              
+          //   ]
+            
+          // },
 
           {
             type: 'CUSTOM_VIEW',
@@ -168,9 +205,13 @@ const FeaturesScreen = ({ navigation }) => {
         ]}
         globalTextStyle={{ fontFamily }}
         // scrollViewProps={{}}
+        
       />
 
+    
     </View>
+
+    
   )
   
 

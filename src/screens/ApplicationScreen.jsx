@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { View, Button, Dimensions } from 'react-native';
+import { View, Button, Dimensions, Platform } from 'react-native';
 import { DragSortableView } from 'react-native-drag-sort';
 import Emergency from '../components/Emergency';
 import Gas from '../components/Gas';
@@ -8,6 +8,7 @@ import Seatbelt from '../components/Seatbelt.jsx';
 import TirePressure from '../components/TirePressure';
 import { SettingsContext } from '../context/settingsContext';
 import SpeedDisplay from '../components/Speed';
+import ColorPicker from 'react-native-wheel-color-picker';
 
 const ApplicationScreen = ({ navigation }) => {
   const { settings } = useContext(SettingsContext);
@@ -49,8 +50,11 @@ const ApplicationScreen = ({ navigation }) => {
       )
     }
   }
-  
+
+
+
   return (
+    
     <View>
       <DragSortableView
       dataSource={dataState}

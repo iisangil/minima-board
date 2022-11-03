@@ -105,5 +105,11 @@ export const styles = StyleSheet.create({
     homeScreen:{
       flex: 1,
       paddingTop: 435
+    }, 
+    colorContainer:{
+      width:350, 
+      height:400,
+      marginBottom: 40, 
+      alignSelf: 'center'
     }
   })

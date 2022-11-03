@@ -9,11 +9,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { HomeScreen } from './src/screens/HomeScreen';
 import { BaseDisplayScreen } from './src/screens/BaseDisplayScreen.js';
-import { SettingsScreen } from './src/screens/SettingsScreen.js';
 import { DefaultDisplayScreen } from './src/screens/DefaultDisplayScreen.js';
 import ApplicationScreen from './src/screens/ApplicationScreen';
 import FeaturesScreen from './src/screens/FeaturesScreen';
 import DeveloperScreen from './src/screens/DeveloperScreen';
+import { ColorCustomizationScreen } from './src/screens/ColorCustomizationScreen';
 
 import { SettingsContext, storage } from './src/context/settingsContext';
 
@@ -57,12 +57,12 @@ function App() {
       <NavigationContainer theme={settings["Theme"] == "Light" ? DefaultTheme : DarkTheme}>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Settings" component={SettingsScreen} />
+          <Stack.Screen name="Settings" component={FeaturesScreen} />
           <Stack.Screen name="Display" component={BaseDisplayScreen} />
           <Stack.Screen name="DefaultDisplay" component={DefaultDisplayScreen} />
           <Stack.Screen name="Application" component={ApplicationScreen} />
-          <Stack.Screen name="Features" component={FeaturesScreen} />
           <Stack.Screen name="Developer" component={DeveloperScreen} />
+          <Stack.Screen name = "ColorCustomization" component={ColorCustomizationScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
       </SettingsContext.Provider>
