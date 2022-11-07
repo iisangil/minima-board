@@ -55,18 +55,18 @@ const ApplicationScreen = ({ navigation }) => {
 
   return (
     
-    <View style={{ backgroundColor: settings["background"] }}>
+    <View style={{ backgroundColor: settings["Background"] }}>
       
 
       <DragSortableView
       dataSource={dataState}
       parentWidth={width}
-      childrenWidth={width / 3}
+      childrenWidth={width / 2.25}
       marginChildrenBottom={10}
       marginChildrenRight={10}
       marginChildrenLeft = {10}
       marginChildrenTop = {10}
-      childrenHeight={height / 6}
+      childrenHeight={height / 3.8}
       onDataChange = {(data)=>{
         if (data.length != dataState.length) {
           setData(data);

@@ -19,9 +19,7 @@ import { watchPositionAsync } from 'expo-location';
   )
 
 const PickerComponent = () => {
-    // state = {
-    //     refreshing: false,
-    //   }
+
     const { settings, setSettings } = useContext(SettingsContext);
 
     
@@ -35,7 +33,7 @@ const PickerComponent = () => {
         console.log("NEWSETTINGS", newSettings);
     
         storage.save({
-          key: 'color',
+          key: 'settings',
           data: newSettings
         });
 
