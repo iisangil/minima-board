@@ -1,16 +1,41 @@
 import { useContext } from 'react';
-import { Linking } from 'react-native';
+import { Linking, View, Text } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import { SettingsContext } from '../context/settingsContext';
+import { styles } from './Styles';
 
-const Emergency = () => {
+export const Emergency = () => {
   const { settings } = useContext(SettingsContext);
 
   const callEmergency = () => {
-    Linking.openURL(`tel:911`);
+    Linking.openURL('tel:911');
   }
 
-  return <AntDesign name='phone' size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={callEmergency} />
+  let contactStyle = Object.assign({}, styles.contact);
+  contactStyle['borderColor'] = settings['Theme'] == 'Light' ? 'black' : 'white';
+  let color = settings['Theme'] == 'Light' ? 'black' : 'white';
+
+  return (
+    <View style={contactStyle} onPress={callEmergency}>
+      <Text style={{ fontSize: '28', color: color, }} >911</Text>
+    </View>
+  )
 }
 
-export default Emergency;
+export const Contact = (number) => {
+  const { settings } = useContext(SettingsContext);
+
+  const callContact = () => {
+    LInking.openURL(`tel:${number}`);
+  }
+
+  let contactStyle = Object.assign({}, styles.contact);
+  contactStyle['borderColor'] = settings['Theme'] == 'Light' ? 'black' : 'white';
+  let color = settings['Theme'] == 'Light' ? 'black' : 'white';
+
+  return (
+    <View style={contactStyle} onPress={callContact}>
+      <Text style={{ fontSize: '28', color: color, }}>ZZ</Text>
+    </View>
+  )
+}

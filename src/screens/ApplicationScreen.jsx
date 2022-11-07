@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { View, Button, Dimensions, Platform } from 'react-native';
 import { DragSortableView } from 'react-native-drag-sort';
-import Emergency from '../components/Emergency';
+import { Emergency } from '../components/Emergency';
 import Gas from '../components/Gas';
 import RPM from '../components/RPM';
 import Seatbelt from '../components/Seatbelt.jsx';

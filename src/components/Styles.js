@@ -111,5 +111,14 @@ export const styles = StyleSheet.create({
       height:400,
       marginBottom: 40, 
       alignSelf: 'center'
+    },
+    contact: {
+      height: 55,
+      width: 55,
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: 'solid',
+      borderWidth: 2,
+      borderRadius: 50,
     }
   })
