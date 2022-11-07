@@ -34,6 +34,14 @@ export const styles = StyleSheet.create({
       alignSelf: "left",
       marginHorizontal: 50
     },
+    colorText: {
+      color: "black",
+      fontSize: 20,
+      lineHeight: 50,
+      fontWeight: "bold",
+      alignSelf: "center",
+      marginHorizontal: 50
+    },
     image: {
       flex: 1,
       justifyContent: "center"
@@ -83,6 +91,19 @@ export const styles = StyleSheet.create({
       borderColor: '#ccc',
       flexDirection: 'row',
     },
+    heroPickerContainer: {
+      marginTop: 0,
+      marginBottom: 0,
+      paddingVertical: 100,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white',
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderColor: '#ccc',
+      flexDirection: 'row',
+    },
+    
     heroImage: {
       width: 80,
       height: 80,
@@ -109,7 +130,11 @@ export const styles = StyleSheet.create({
     colorContainer:{
       width:350, 
       height:400,
-      marginBottom: 40, 
-      alignSelf: 'center'
+      marginTop: 50,
+      alignSelf: 'bottom'
+    },
+
+    background:{
+      backgroundColor: 'gray'
     }
   })

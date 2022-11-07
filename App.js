@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as reactNative from 'react-native';
+import {View} from 'react-native';
 import { 
   DefaultTheme,
   DarkTheme,
@@ -52,9 +53,12 @@ function App() {
     console.warn(err.message);
   });
 
+
   return (
-    <SettingsContext.Provider value={settingsData} >
+      <SettingsContext.Provider value={settingsData} >
+
       <NavigationContainer theme={settings["Theme"] == "Light" ? DefaultTheme : DarkTheme}>
+        
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Settings" component={FeaturesScreen} />
@@ -63,9 +67,12 @@ function App() {
           <Stack.Screen name="Application" component={ApplicationScreen} />
           <Stack.Screen name="Developer" component={DeveloperScreen} />
           <Stack.Screen name = "ColorCustomization" component={ColorCustomizationScreen}/>
+          
         </Stack.Navigator>
       </NavigationContainer>
       </SettingsContext.Provider>
+
+    
   );
 }
 

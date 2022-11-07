@@ -162,28 +162,6 @@ const FeaturesScreen = ({ navigation }) => {
             ],
           },
           
-          // {
-          //   type: 'SECTION',
-          //   header: 'Color Customization'.toUpperCase(),
-          //   rows: [
-
-          //     {
-          //       title: 'Background Color',
-          //       // renderAccessory: () => (
-          //       //   <View
-          //       //     style={{
-          //       //       width: 30,
-          //       //       height: 30,
-          //       //       backgroundColor: 'blue',
-          //       //     }}
-          //       //   />
-          //       // ),
-          //       showDisclosureIndicator: false, 
-          //     },
-              
-          //   ]
-            
-          // },
 
           {
             type: 'CUSTOM_VIEW',
