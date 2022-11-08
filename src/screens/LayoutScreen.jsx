@@ -84,6 +84,9 @@ const LayoutScreen = ({ navigation }) => {
     const [ dataState, setData ] = useState(dataArray);
 
     const renderComponent = (item, index) => {
+      if (item == 'contact1' || item == 'contact2' && !settings['contacts']) {
+        return;
+      }
       if (settings['contacts'] && item == 'contact1' || item == 'contact2') {
         if (item == 'contact1') {
           let contactName = [...settings['contacts']].sort()[0];
