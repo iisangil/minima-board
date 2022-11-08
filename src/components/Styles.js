@@ -135,7 +135,7 @@ export const styles = StyleSheet.create({
     },
 
     background:{
-      backgroundColor: 'gray'
+      backgroundColor: 'gray',
       marginBottom: 40, 
       alignSelf: 'center'
     },
