@@ -27,7 +27,7 @@ const ApplicationScreen = ({ navigation }) => {
     unlockScreen();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     const lockScreen = async () => {
       await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
     }
@@ -163,6 +163,7 @@ const ApplicationScreen = ({ navigation }) => {
       renderItem={renderComponent}
       keyExtractor={item => item}
       dragActivationTreshold={300}
+      sortable={false}
     />
     </View>
   )

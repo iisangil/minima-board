@@ -21,6 +21,7 @@ import ContactsScreen from './src/screens/ContactsScreen';
 import { SettingsContext, storage } from './src/context/settingsContext';
 
 import {styles} from './src/components/Styles.js';
+import LayoutScreen from './src/screens/LayoutScreen';
 
 const warn = console.warn;
 
@@ -78,6 +79,7 @@ function App() {
           <Stack.Screen name="Developer" component={DeveloperScreen} />
           <Stack.Screen name = "ColorCustomization" component={ColorCustomizationScreen}/>
           <Stack.Screen name='Contacts' component={ContactsScreen} />
+          <Stack.Screen name='Layout' component={LayoutScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       </SettingsContext.Provider>

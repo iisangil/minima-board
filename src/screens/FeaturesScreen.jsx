@@ -158,6 +158,16 @@ const FeaturesScreen = ({ navigation }) => {
               
             ],
           },
+          {
+            type: 'SECTION',
+            header: 'Display'.toUpperCase(),
+            rows: [
+              {
+                title: 'Customize Display Layout',
+                renderAccessory: () => <Button title=">" onPress={() => navigation.navigate('Layout')} />
+              }, 
+            ],
+          },
           
 
           {
