@@ -9,6 +9,7 @@ import TirePressure from '../components/TirePressure';
 import { SettingsContext } from '../context/settingsContext';
 import SpeedDisplay from '../components/Speed';
 import ColorPicker from 'react-native-wheel-color-picker';
+import { styles } from '../components/Styles';
 
 const ApplicationScreen = ({ navigation }) => {
   const { settings } = useContext(SettingsContext);
@@ -83,10 +84,11 @@ const ApplicationScreen = ({ navigation }) => {
   }
 
 
-
   return (
     
-    <View>
+    <View style={{ backgroundColor: settings["Background"] }}>
+      
+
       <DragSortableView
       dataSource={dataState}
       parentWidth={width}
