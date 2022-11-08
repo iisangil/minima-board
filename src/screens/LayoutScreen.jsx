@@ -76,7 +76,29 @@ const LayoutScreen = ({ navigation }) => {
     const [ dataState, setData ] = useState(settings['layout'] ? settings['layout'] : dataArray);
 
     const renderComponent = (item, index) => {
-      if (item == 'contact1' || item == 'contact2') {
+      if (item == 'Speed') {
+        return (
+          <View
+          style={{
+          width: (width < height ? width / 3 : width / 5.5) * 2,
+          height: width < height ? height / 5.5 : height / 3,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: 'solid',
+          borderWidth: '1px',
+          borderRadius: '35',
+          marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2) * 2,
+          marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2) * 2,
+          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          }}>
+            {components[item]}
+          </View>
+        )
+      }
+      else if (item == 'contact1' || item == 'contact2') {
         if (!settings['contacts'] || settings['contacts'].length == 0) {
           return;
         }
@@ -139,29 +161,7 @@ const LayoutScreen = ({ navigation }) => {
           )
         }
       }
-      else if (settings[item] || item == 'Button' || item == 'Speed') {
-        if (item == 'Speed') {
-          return (
-            <View
-            style={{
-            width: (width < height ? width / 3 : width / 5.5) * 2,
-            height: width < height ? height / 5.5 : height / 3,
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: 'solid',
-            borderWidth: '1px',
-            borderRadius: '35',
-            marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2) * 2,
-            marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2) * 2,
-            marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-            marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
-            }}>
-              {components[item]}
-            </View>
-          )
-        }
+      else if (settings[item] || item == 'Button') {
         return (
           <TouchableOpacity
           onLongPress={() => refContainer.current.startTouch(item, index)}
