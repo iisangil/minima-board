@@ -1,6 +1,6 @@
-import { useContext, useState, useEffect } from 'react';
-import { View, Button, Dimensions, Platform } from 'react-native';
-import { DragSortableView } from 'react-native-drag-sort';
+import { useContext, useState, useEffect, useRef } from 'react';
+import { View, Button, Dimensions, Platform, TouchableOpacity } from 'react-native';
+import { AnySizeDragSortableView, DragSortableView } from 'react-native-drag-sort';
 import { Emergency, Contact } from '../components/Calling';
 import Gas from '../components/Gas';
 import RPM from '../components/RPM';
@@ -87,7 +87,8 @@ const ApplicationScreen = ({ navigation }) => {
 
         let { contactName, phoneNumber } = settings['info'][contactId];
         return (
-          <View style={{
+          <View
+          style={{
             width: width < height ? width / 3 : width / 5.5,
             height: width < height ? height / 5.5 : height / 3,
             display: 'flex',
@@ -96,7 +97,11 @@ const ApplicationScreen = ({ navigation }) => {
             justifyContent: 'center',
             border: 'solid',
             borderWidth: '1px',
-            borderRadius: '35'
+            borderRadius: '35',
+            marginLeft: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+            marginRight: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+            marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+            marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
           }}>
             <Contact contact={{ contactName, phoneNumber }} />
           </View>
@@ -107,7 +112,8 @@ const ApplicationScreen = ({ navigation }) => {
 
         let { contactName, phoneNumber } = settings['info'][contactId];
         return (
-          <View style={{
+          <View
+          style={{
             width: width < height ? width / 3 : width / 5.5,
             height: width < height ? height / 5.5 : height / 3,
             display: 'flex',
@@ -116,7 +122,11 @@ const ApplicationScreen = ({ navigation }) => {
             justifyContent: 'center',
             border: 'solid',
             borderWidth: '1px',
-            borderRadius: '35'
+            borderRadius: '35',
+            marginLeft: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+            marginRight: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+            marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+            marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
           }}>
             <Contact contact={{ contactName, phoneNumber }} />
           </View>
@@ -124,9 +134,11 @@ const ApplicationScreen = ({ navigation }) => {
       }
     }
     else if (settings[item] || item == 'Button' || item == 'Speed') {
-      return (
-        <View style={{
-          width: width < height ? width / 3 : width / 5.5,
+      if (item == 'Speed') {
+        return (
+          <View
+          style={{
+          width: (width < height ? width / 3 : width / 5.5) * 2,
           height: width < height ? height / 5.5 : height / 3,
           display: 'flex',
           flexDirection: 'row',
@@ -134,7 +146,32 @@ const ApplicationScreen = ({ navigation }) => {
           justifyContent: 'center',
           border: 'solid',
           borderWidth: '1px',
-          borderRadius: '35'
+          borderRadius: '35',
+          marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2) * 2,
+          marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2) * 2,
+          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          }}>
+            {components[item]}
+          </View>
+        )
+      }
+      return (
+        <View
+        style={{
+        width: (width < height ? width / 3 : width / 5.5),
+        height: width < height ? height / 5.5 : height / 3,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        border: 'solid',
+        borderWidth: '1px',
+        borderRadius: '35',
+        marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+        marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+        marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+        marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
         }}>
           {components[item]}
         </View>
@@ -142,27 +179,18 @@ const ApplicationScreen = ({ navigation }) => {
     }
   }
 
-  return (
-    
-    <View style={{ backgroundColor: settings["Background"] }}>
-      
+  const refContainer = useRef();
 
-      <DragSortableView
+  return (
+    <View style={{ backgroundColor: settings["Background"], width: width, height: height }}>
+      <AnySizeDragSortableView
+      ref={refContainer}
       dataSource={dataState}
-      parentWidth={width}
-      childrenWidth={width < height ? width / 3 : width / 5.5}
-      marginChildrenBottom={width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height}
-      marginChildrenRight={width < height ? 0.08333333333 * width : 0.03409090909 * width / 2}
-      marginChildrenLeft = {width < height ? 0.08333333333 * width : 0.03409090909 * width / 2}
-      marginChildrenTop = {width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height}
-      parentHeight={height}
-      childrenHeight={width < height ? height / 5.5 : height / 3}
       renderItem={renderComponent}
       keyExtractor={item => item}
-      dragActivationTreshold={300}
       sortable={false}
     />
-    </View>
+  </View>
   )
 
 }

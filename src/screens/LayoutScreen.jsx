@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import { Dimensions, View, Button } from 'react-native';
+import { useState, useEffect, useContext, useRef } from 'react';
+import { Dimensions, View, Button, TouchableOpacity } from 'react-native';
 import { SettingsContext, storage } from "../context/settingsContext";
 import { Emergency, Contact } from '../components/Calling';
 import Gas from '../components/Gas';
@@ -8,13 +8,15 @@ import Seatbelt from '../components/Seatbelt.jsx';
 import TirePressure from '../components/TirePressure';
 import SpeedDisplay from '../components/Speed';
 import * as ScreenOrientation from 'expo-screen-orientation';
-import { DragSortableView } from 'react-native-drag-sort';
+import { DragSortableView, AnySizeDragSortableView } from 'react-native-drag-sort';
 
 const LayoutScreen = ({ navigation }) => {
   const { settings, setSettings } = useContext(SettingsContext);
   const { width, height } = Dimensions.get('window');
+  console.log('width height', width, height)
 
   const [orientation, setOrientation] = useState(1);
+  const refContainer = useRef();
 
   useEffect(() => {
     const unlockScreen = async () => {
@@ -83,7 +85,10 @@ const LayoutScreen = ({ navigation }) => {
 
           let { contactName, phoneNumber } = settings['info'][contactId];
           return (
-            <View style={{
+            <TouchableOpacity
+            onLongPress={() => refContainer.current.startTouch(item, index)}
+            onPressOut={() => refContainer.current.onPressOut()}
+            style={{
               width: width < height ? width / 3 : width / 5.5,
               height: width < height ? height / 5.5 : height / 3,
               display: 'flex',
@@ -92,10 +97,16 @@ const LayoutScreen = ({ navigation }) => {
               justifyContent: 'center',
               border: 'solid',
               borderWidth: '1px',
-              borderRadius: '35'
+              borderRadius: '35',
+              marginLeft: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+              marginRight: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+              marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+              marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
             }}>
-              <Contact contact={{ contactName, phoneNumber }} />
-            </View>
+              <View>
+                <Contact contact={{ contactName, phoneNumber }} />
+              </View>
+            </TouchableOpacity>
           )
         }
         else if (settings['contacts'].length > 1) {
@@ -103,7 +114,10 @@ const LayoutScreen = ({ navigation }) => {
 
           let { contactName, phoneNumber } = settings['info'][contactId];
           return (
-            <View style={{
+            <TouchableOpacity
+            onLongPress={() => refContainer.current.startTouch(item, index)}
+            onPressOut={() => refContainer.current.onPressOut()}
+            style={{
               width: width < height ? width / 3 : width / 5.5,
               height: width < height ? height / 5.5 : height / 3,
               display: 'flex',
@@ -112,17 +126,25 @@ const LayoutScreen = ({ navigation }) => {
               justifyContent: 'center',
               border: 'solid',
               borderWidth: '1px',
-              borderRadius: '35'
+              borderRadius: '35',
+              marginLeft: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+              marginRight: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+              marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+              marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
             }}>
-              <Contact contact={{ contactName, phoneNumber }} />
-            </View>
+              <View>
+                <Contact contact={{ contactName, phoneNumber }} />
+              </View>
+            </TouchableOpacity>
           )
         }
       }
       else if (settings[item] || item == 'Button' || item == 'Speed') {
-        return (
-          <View style={{
-            width: width < height ? width / 3 : width / 5.5,
+        if (item == 'Speed') {
+          return (
+            <View
+            style={{
+            width: (width < height ? width / 3 : width / 5.5) * 2,
             height: width < height ? height / 5.5 : height / 3,
             display: 'flex',
             flexDirection: 'row',
@@ -130,48 +152,65 @@ const LayoutScreen = ({ navigation }) => {
             justifyContent: 'center',
             border: 'solid',
             borderWidth: '1px',
-            borderRadius: '35'
+            borderRadius: '35',
+            marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2) * 2,
+            marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2) * 2,
+            marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+            marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+            }}>
+              {components[item]}
+            </View>
+          )
+        }
+        return (
+          <TouchableOpacity
+          onLongPress={() => refContainer.current.startTouch(item, index)}
+          onPressOut={() => refContainer.current.onPressOut()}
+          style={{
+          width: (width < height ? width / 3 : width / 5.5),
+          height: width < height ? height / 5.5 : height / 3,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: 'solid',
+          borderWidth: '1px',
+          borderRadius: '35',
+          marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+          marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
           }}>
             {components[item]}
-          </View>
+          </TouchableOpacity>
         )
       }
     }
   
     return (
       
-      <View style={{ backgroundColor: settings["Background"] }}>
-        
+      <View style={{ backgroundColor: settings["Background"], width: width, height: height }}>
+          <AnySizeDragSortableView
+          ref={refContainer}
+          dataSource={dataState}
+          renderItem={renderComponent}
+          keyExtractor={item => item}
+          onDataChange = {(data, callback) => {
+            console.log('DATHALKSHAKJHDKAJHDKL', data, callback);
+            setData([...data]);
   
-        <DragSortableView
-        dataSource={dataState}
-        parentWidth={width}
-        childrenWidth={width < height ? width / 3 : width / 5.5}
-        marginChildrenBottom={width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height}
-        marginChildrenRight={width < height ? 0.08333333333 * width : 0.03409090909 * width / 2}
-        marginChildrenLeft = {width < height ? 0.08333333333 * width : 0.03409090909 * width / 2}
-        marginChildrenTop = {width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height}
-        parentHeight={height}
-        childrenHeight={width < height ? height / 5.5 : height / 3}
-        onDataChange = {(data) => {
-          console.log('DATHALKSHAKJHDKAJHDKL', data);
-          console.log("DATA TO STATAE", [...data]);
-          setData([...data]);
-
-          let newSettings = Object.assign({}, settings);
-          newSettings['layout'] = [...data];
-          setSettings(newSettings);
-          console.log('new settings', newSettings);
-          
-          storage.save({
-            key: 'settings',
-            data: newSettings
-          });
-        }}
-        renderItem={renderComponent}
-        keyExtractor={item => item}
-        dragActivationTreshold={300}
-      />
+            let newSettings = Object.assign({}, settings);
+            newSettings['layout'] = [...data];
+            setSettings(newSettings);
+            console.log('new settings', newSettings);
+            
+            storage.save({
+              key: 'settings',
+              data: newSettings
+            });
+            callback();
+          }}
+        />
       </View>
     )
   
