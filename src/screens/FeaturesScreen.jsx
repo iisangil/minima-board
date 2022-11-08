@@ -28,13 +28,16 @@ const FeaturesScreen = ({ navigation }) => {
   )
 
   const changeTheme = () => {
+    // console.log('settings', settings);
     let newSettings = Object.assign({}, settings);
     newSettings["Theme"] = settings["Theme"] == "Light" ? "Dark" : "Light";
     setSettings(newSettings);
+    // setSettings({});
 
     storage.save({
       key: 'settings',
       data: newSettings
+      // data: {}
     });
   }
 
@@ -179,6 +182,16 @@ const FeaturesScreen = ({ navigation }) => {
                 renderAccessory: () => <Button title=">" onPress={() => navigation.navigate('Contacts')} />
               }
               
+            ],
+          },
+          {
+            type: 'SECTION',
+            header: 'Display'.toUpperCase(),
+            rows: [
+              {
+                title: 'Customize Display Layout',
+                renderAccessory: () => <Button title=">" onPress={() => navigation.navigate('Layout')} />
+              }, 
             ],
           },
           

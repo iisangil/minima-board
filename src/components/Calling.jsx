@@ -23,7 +23,6 @@ export const Emergency = () => {
 }
 
 export const Contact = (contact) => {
-  console.log("CONTACT RENDERING", contact);
   const { settings } = useContext(SettingsContext);
 
   const callContact = () => {
@@ -35,10 +34,8 @@ export const Contact = (contact) => {
   let color = settings['Theme'] == 'Light' ? 'black' : 'white';
 
   const contactName = () => {
-    console.log('function', contact, 'contact', contact.contact, 'name', contact.contact.contactName);
     let names = contact.contact.contactName.toUpperCase().split(' ');
     let initials = names[0][0] + names[names.length - 1][0];
-    console.log("INITIALS OF", contact.contact.contactName, names, initials);
     return initials;
   }
 
