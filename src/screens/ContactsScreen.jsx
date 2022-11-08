@@ -35,6 +35,9 @@ const ContactsScreen = (navigation) => {
     if (!settings['contacts']) {
       selectedContacts = [contactName];
     } 
+    else if (settings['contacts'].length == 2) {
+      return;
+    }
     else if (settings['contacts'].includes(contact.name)) {
       console.log('here');
       selectedContacts = [...settings['contacts']];
