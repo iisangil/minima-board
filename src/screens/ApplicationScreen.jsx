@@ -91,6 +91,9 @@ const ApplicationScreen = ({ navigation }) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
+            border: 'solid',
+            borderWidth: '1px',
+            borderRadius: '35'
           }}>
             <Contact contact={contact} />
           </View>
@@ -109,6 +112,9 @@ const ApplicationScreen = ({ navigation }) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
+            border: 'solid',
+            borderWidth: '1px',
+            borderRadius: '35'
           }}>
             <Contact contact={contact} />
           </View>
@@ -124,6 +130,9 @@ const ApplicationScreen = ({ navigation }) => {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
+          border: 'solid',
+          borderWidth: '1px',
+          borderRadius: '35'
         }}>
           {components[item]}
         </View>
