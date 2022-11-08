@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { View, Switch, Text, Button, SectionList, SafeAreaView, StatusBar, Platform, RefreshControl } from 'react-native';
+import { View, Switch, Text, Button, SectionList, SafeAreaView, StatusBar, Platform, RefreshControl, TextInput } from 'react-native';
 import { SettingsContext, storage } from '../context/settingsContext';
 
 import { styles } from '../components/Styles';
@@ -7,6 +7,8 @@ import Icon from 'react-native-vector-icons/Entypo'
 import PickerComponent from '../components/ColorPicker';
 import {SettingsScreen, SettingsData, Chevron} from 'react-native-settings-screen';
 import ColorPicker from 'react-native-wheel-color-picker';
+
+import { changeRPMThreshold } from '../components/RPM';
 
 const FeaturesScreen = ({ navigation }) => {
   state = {
@@ -47,6 +49,22 @@ const FeaturesScreen = ({ navigation }) => {
       data: newSettings
     });
   } 
+
+  let rpmThreshold = settings["RPMThreshold"]
+
+  const handleRPM = (RPM) => {
+    changeRPMThreshold(RPM)
+    rpmThreshold = settings["RPMThreshold"]
+
+    let newSettings = Object.assign({}, settings);
+    newSettings["RPMThreshold"] = RPM
+    setSettings(newSettings);
+  
+    storage.save({
+      key: 'settings',
+      data: newSettings
+    });
+  }
 
   return (
     <View style={styles.container}>
@@ -106,7 +124,7 @@ const FeaturesScreen = ({ navigation }) => {
                 renderAccessory:() => <Switch
                     value={settings['Seatbelt']}
                     onChange={() => selectFeature("Seatbelt")}
-                  />
+                  />,
               }
               // {
               //   title: 'Text',
@@ -132,8 +150,13 @@ const FeaturesScreen = ({ navigation }) => {
               },
               {
                 title: 'RPM limit threshold',
-                subtitle: 'Highest RPM limits',
-                showDisclosureIndicator: true,
+                subtitle: 'Current: ' + rpmThreshold,
+                renderAccessory:() => <TextInput
+                  style={styles.input}
+                  onChangeText={handleRPM}
+                  placeholder="RPMs"
+                  keyboardType="numeric"
+                />
               },
             
             ],

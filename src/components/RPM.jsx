@@ -15,8 +15,14 @@ export const updateRPM = (rpm) => {
   currentRPM = rpm
 }
 
+export const changeRPMThreshold = (threshold) => {
+  rpmThreshold = threshold
+  isHigh = currentRPM > rpmThreshold
+}
+
 const RPM = () => {
   const { settings } = useContext(SettingsContext);
+  rpmThreshold = settings["RPMThreshold"]
 
   const rpmInfo = () => {
     console.log("RPM: ", currentRPM);

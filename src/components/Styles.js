@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     },
     subText: {
       color: "black",
-      fontSize: 14,
+      fontSize: 13,
       lineHeight: 84,
       textAlign: "center",
     },
