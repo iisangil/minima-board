@@ -52,7 +52,7 @@ const ContactsScreen = (navigation) => {
     let newSettings = Object.assign({}, settings);
     
     newSettings['contacts'] = selectedContacts;
-    // newSettings['contacts'] = [];x
+
     console.log("INFO", contactName, phoneNumber);
     
     if (!newSettings['numbers']) {

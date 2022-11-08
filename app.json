@@ -3,7 +3,6 @@
     "name": "minima-board",
     "slug": "minima-board",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -23,7 +22,8 @@
         "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses the GPS location to calcualte speed.",
         "NSLocationAlwaysUsageDescription": "This app has location always in use."
       },
-      "supportsTablet": true
+      "supportsTablet": true,
+      "requireFullScreen": true
     },
     "android": {
       "adaptiveIcon": {

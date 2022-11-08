@@ -7,6 +7,7 @@ import {
   NavigationContainer 
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as ScreenOrientation from 'expo-screen-orientation'
 
 import { HomeScreen } from './src/screens/HomeScreen';
 import { BaseDisplayScreen } from './src/screens/BaseDisplayScreen.js';
@@ -41,6 +42,14 @@ const Stack = createNativeStackNavigator();
 function App() {
   const [settings, setSettings] = React.useState({"Theme": "Light"})
   const settingsData = { settings, setSettings };
+
+  React.useEffect(() => {
+    const lockScreen = async () => {
+      await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+    }
+
+    lockScreen();
+  }, [])
 
   storage.load({
     key: 'settings',
