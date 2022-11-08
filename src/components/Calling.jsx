@@ -16,26 +16,35 @@ export const Emergency = () => {
   let color = settings['Theme'] == 'Light' ? 'black' : 'white';
 
   return (
-    <View style={contactStyle} onPress={callEmergency}>
-      <Text style={{ fontSize: '28', color: color, }} >911</Text>
+    <View style={contactStyle}>
+      <Text style={{ fontSize: '28', color: color, }} onPress={callEmergency}>911</Text>
     </View>
   )
 }
 
-export const Contact = (number) => {
+export const Contact = (contact) => {
+  console.log("CONTACT RENDERING", contact);
   const { settings } = useContext(SettingsContext);
 
   const callContact = () => {
-    LInking.openURL(`tel:${number}`);
+    Linking.openURL(`tel:${contact.contact.phoneNumber}`);
   }
 
   let contactStyle = Object.assign({}, styles.contact);
   contactStyle['borderColor'] = settings['Theme'] == 'Light' ? 'black' : 'white';
   let color = settings['Theme'] == 'Light' ? 'black' : 'white';
 
+  const contactName = () => {
+    console.log('function', contact, 'contact', contact.contact, 'name', contact.contact.contactName);
+    let names = contact.contact.contactName.toUpperCase().split(' ');
+    let initials = names[0][0] + names[names.length - 1][0];
+    console.log("INITIALS OF", contact.contact.contactName, names, initials);
+    return initials;
+  }
+
   return (
-    <View style={contactStyle} onPress={callContact}>
-      <Text style={{ fontSize: '28', color: color, }}>ZZ</Text>
+    <View style={contactStyle}>
+      <Text style={{ fontSize: '28', color: color, }} onPress={callContact}>{contactName()}</Text>
     </View>
   )
 }
