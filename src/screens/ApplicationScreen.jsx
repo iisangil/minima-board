@@ -82,7 +82,7 @@ const ApplicationScreen = ({ navigation }) => {
       if (!settings['contacts'] || settings['contacts'].length == 0) {
         return;
       }
-      else if (item == 'contact1') {
+      if (item == 'contact1') {
         let contactName = [...settings['contacts']].sort()[0];
         let phoneNumber = settings['numbers'][contactName];
 
