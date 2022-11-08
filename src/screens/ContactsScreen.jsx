@@ -35,13 +35,12 @@ const ContactsScreen = (navigation) => {
     if (!settings['contacts']) {
       selectedContacts = [contactName];
     } 
-    else if (settings['contacts'].length == 2) {
-      return;
-    }
     else if (settings['contacts'].includes(contact.name)) {
-      console.log('here');
       selectedContacts = [...settings['contacts']];
       selectedContacts.splice(settings['contacts'].indexOf(contact.name), 1);
+    }
+    else if (settings['contacts'].length == 2) {
+      return;
     }
     else if (settings['contacts'].length < 2) {
       selectedContacts = [...settings['contacts'], contactName];
@@ -53,7 +52,6 @@ const ContactsScreen = (navigation) => {
     
     newSettings['contacts'] = selectedContacts;
 
-    console.log("INFO", contactName, phoneNumber);
     
     if (!newSettings['numbers']) {
       newSettings['numbers'] = {};
