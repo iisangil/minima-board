@@ -30,36 +30,38 @@ const ContactsScreen = (navigation) => {
     console.log("SELECTING", contact, settings);
     let contactName = contact.name;
     let phoneNumber = contact.phoneNumbers[0].number;
+    let contactId = contact.id;
 
     let selectedContacts;
     if (!settings['contacts']) {
-      selectedContacts = [contactName];
+      selectedContacts = [contactId];
     } 
-    else if (settings['contacts'].includes(contact.name)) {
+    else if (settings['contacts'].includes(contactId)) {
       console.log('here');
       selectedContacts = [...settings['contacts']];
-      selectedContacts.splice(settings['contacts'].indexOf(contact.name), 1);
+      selectedContacts.splice(settings['contacts'].indexOf(contactId), 1);
     }
     else if (settings['contacts'].length == 2) {
       return;
     }
     else if (settings['contacts'].length < 2) {
-      selectedContacts = [...settings['contacts'], contactName];
+      selectedContacts = [...settings['contacts'], contactId];
     }
     else {
-      selectedContacts = [contactName];
+      selectedContacts = [contactId];
     }
     let newSettings = Object.assign({}, settings);
     
     newSettings['contacts'] = selectedContacts;
     
-    if (!newSettings['numbers']) {
-      newSettings['numbers'] = {};
-      newSettings['numbers'][contactName] = phoneNumber;
+    if (!newSettings['info']) {
+      newSettings['info'] = {};
+      newSettings['info'][contactId] = { phoneNumber, contactName };
     }
-    else if (!newSettings['numbers'][contactName]) {
-      newSettings['numbers'][contactName] = phoneNumber;
+    else if (!newSettings['info'][contactId]) {
+      newSettings['info'][contactId] = { phoneNumber, contactName };;
     }
+
     setSettings(newSettings);
     console.log('new settings', newSettings);
   
@@ -69,8 +71,8 @@ const ContactsScreen = (navigation) => {
     });
   }
 
-  const isContactSelected = (contactName) => {
-    return settings['contacts'] && settings['contacts'].includes(contactName);
+  const isContactSelected = (contactId) => {
+    return settings['contacts'] && settings['contacts'].includes(contactId);
   }
 
   const createRows = () => {
@@ -81,14 +83,15 @@ const ContactsScreen = (navigation) => {
         title: contact.name,
         renderAccessory: () => (
           <Switch
-          value={isContactSelected(contact.name)}
+          value={isContactSelected(contact.id)}
           onChange={() => {
             selectContact(contact)
             console.log('contact', contact);
           }}
           disabled={disabled}
           />
-        )
+        ),
+        key: contact.id
       }
     });
     return rows;

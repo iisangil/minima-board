@@ -79,10 +79,9 @@ const LayoutScreen = ({ navigation }) => {
           return;
         }
         if (item == 'contact1') {
-          let contactName = [...settings['contacts']].sort()[0];
-          let phoneNumber = settings['numbers'][contactName];
-  
-          let contact = { contactName, phoneNumber }
+          let contactId = [...settings['contacts']].sort()[0];
+
+          let { contactName, phoneNumber } = settings['info'][contactId];
           return (
             <View style={{
               width: width < height ? width / 3 : width / 5.5,
@@ -95,15 +94,14 @@ const LayoutScreen = ({ navigation }) => {
               borderWidth: '1px',
               borderRadius: '35'
             }}>
-              <Contact contact={contact} />
+              <Contact contact={{ contactName, phoneNumber }} />
             </View>
           )
         }
         else if (settings['contacts'].length > 1) {
-          let contactName = [...settings['contacts']].sort()[1];
-          let phoneNumber = settings['numbers'][contactName];
-  
-          let contact = { contactName, phoneNumber }
+          let contactId = [...settings['contacts']].sort()[1];
+
+          let { contactName, phoneNumber } = settings['info'][contactId];
           return (
             <View style={{
               width: width < height ? width / 3 : width / 5.5,
@@ -116,7 +114,7 @@ const LayoutScreen = ({ navigation }) => {
               borderWidth: '1px',
               borderRadius: '35'
             }}>
-              <Contact contact={contact} />
+              <Contact contact={{ contactName, phoneNumber }} />
             </View>
           )
         }
