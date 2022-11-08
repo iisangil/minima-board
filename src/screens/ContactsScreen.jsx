@@ -74,18 +74,23 @@ const ContactsScreen = (navigation) => {
   }
 
   const createRows = () => {
-    let rows = contactInfo.map((contact) => ({
-      title: contact.name,
-      renderAccessory: () => (
-        <Switch
-        value={isContactSelected(contact.name)}
-        onChange={() => {
-          selectContact(contact)
-          console.log('contact', contact);
-        }}
-        />
-      )
-    }));
+    let rows = contactInfo.map((contact) => {
+      let disabled = !contact.phoneNumbers || contact.phoneNumbers.length == 0;
+      console.log("CHECKING ABILITY", contact);
+      return {
+        title: contact.name,
+        renderAccessory: () => (
+          <Switch
+          value={isContactSelected(contact.name)}
+          onChange={() => {
+            selectContact(contact)
+            console.log('contact', contact);
+          }}
+          disabled={disabled}
+          />
+        )
+      }
+    });
     return rows;
   }
 

@@ -43,17 +43,6 @@ const LayoutScreen = ({ navigation }) => {
 
     // return a clean up function to unsubscribe from notifications
     return ()=>{
-      console.log('datasate', dataState);
-      let newSettings = Object.assign({}, settings);
-      newSettings['layout'] = [...dataState];
-      setSettings(newSettings);
-      console.log('new settings', newSettings);
-      
-      storage.save({
-        key: 'settings',
-        data: newSettings
-      });
-      
       lockScreen();
       ScreenOrientation.removeOrientationChangeListener(subscription);
     }
@@ -150,10 +139,6 @@ const LayoutScreen = ({ navigation }) => {
         )
       }
     }
-
-    // const layoutHandler = (data) => {
-
-    // }
   
     return (
       
@@ -174,6 +159,16 @@ const LayoutScreen = ({ navigation }) => {
           console.log('DATHALKSHAKJHDKAJHDKL', data);
           console.log("DATA TO STATAE", [...data]);
           setData([...data]);
+
+          let newSettings = Object.assign({}, settings);
+          newSettings['layout'] = [...data];
+          setSettings(newSettings);
+          console.log('new settings', newSettings);
+          
+          storage.save({
+            key: 'settings',
+            data: newSettings
+          });
         }}
         renderItem={renderComponent}
         keyExtractor={item => item}
