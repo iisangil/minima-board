@@ -15,6 +15,7 @@ import ApplicationScreen from './src/screens/ApplicationScreen';
 import FeaturesScreen from './src/screens/FeaturesScreen';
 import DeveloperScreen from './src/screens/DeveloperScreen';
 import { ColorCustomizationScreen } from './src/screens/ColorCustomizationScreen';
+import ContactsScreen from './src/screens/ContactsScreen';
 
 import { SettingsContext, storage } from './src/context/settingsContext';
 
@@ -67,7 +68,7 @@ function App() {
           <Stack.Screen name="Application" component={ApplicationScreen} />
           <Stack.Screen name="Developer" component={DeveloperScreen} />
           <Stack.Screen name = "ColorCustomization" component={ColorCustomizationScreen}/>
-          
+          <Stack.Screen name='Contacts' component={ContactsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       </SettingsContext.Provider>

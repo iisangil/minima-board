@@ -63,7 +63,7 @@ const FeaturesScreen = ({ navigation }) => {
               {
                 title: 'Dark Mode',
                 renderAccessory:() => <Switch
-                    value={settings['Theme']}
+                    value={settings['Theme'] != 'Light'}
                     onChange={() => changeTheme("Theme")}
                   />
                 
@@ -151,12 +151,9 @@ const FeaturesScreen = ({ navigation }) => {
                   />
               }, 
               {
-                title: 'Caller Whitelist',
-                subtitle: 'Block certain callers',
-                renderAccessory:() => <Switch
-                    value={settings['Emergency']}
-                    onChange={() => selectFeature("Emergency")}
-                  />
+                title: 'Caller Selection',
+                subtitle: 'Quick-call Up to 2 Contacts',
+                renderAccessory: () => <Button title=">" onPress={() => navigation.navigate('Contacts')} />
               }
               
             ],

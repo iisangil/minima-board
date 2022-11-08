@@ -136,5 +136,16 @@ export const styles = StyleSheet.create({
 
     background:{
       backgroundColor: 'gray'
+      marginBottom: 40, 
+      alignSelf: 'center'
+    },
+    contact: {
+      height: 55,
+      width: 55,
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: 'solid',
+      borderWidth: 2,
+      borderRadius: 50,
     }
   })
