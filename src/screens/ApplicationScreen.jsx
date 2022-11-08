@@ -77,9 +77,9 @@ const ApplicationScreen = ({ navigation }) => {
   ];
 
   const renderComponent = (item, index) => {
-    console.log("settings", settings);
+    console.log("settings render", settings);
     if (item == 'contact1' || item == 'contact2') {
-      if (!settings['contacts']) {
+      if (!settings['contacts'] || settings['contacts'].length == 0) {
         return;
       }
       else if (item == 'contact1') {
