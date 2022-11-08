@@ -26,13 +26,16 @@ const FeaturesScreen = ({ navigation }) => {
   )
 
   const changeTheme = () => {
+    // console.log('settings', settings);
     let newSettings = Object.assign({}, settings);
     newSettings["Theme"] = settings["Theme"] == "Light" ? "Dark" : "Light";
     setSettings(newSettings);
+    // setSettings({});
 
     storage.save({
       key: 'settings',
       data: newSettings
+      // data: {}
     });
   }
 

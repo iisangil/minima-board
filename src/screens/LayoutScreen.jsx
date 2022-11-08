@@ -43,18 +43,19 @@ const LayoutScreen = ({ navigation }) => {
 
     // return a clean up function to unsubscribe from notifications
     return ()=>{
-      lockScreen();
-      ScreenOrientation.removeOrientationChangeListener(subscription);
       console.log('datasate', dataState);
       let newSettings = Object.assign({}, settings);
-      newSettings['layout'] = dataState;
+      newSettings['layout'] = [...dataState];
       setSettings(newSettings);
       console.log('new settings', newSettings);
-
+      
       storage.save({
-        key: 'layout',
+        key: 'settings',
         data: newSettings
       });
+      
+      lockScreen();
+      ScreenOrientation.removeOrientationChangeListener(subscription);
     }
     }, []);
 
@@ -81,7 +82,7 @@ const LayoutScreen = ({ navigation }) => {
       'contact2',
     ];
 
-    const [ dataState, setData ] = useState(dataArray);
+    const [ dataState, setData ] = useState(settings['layout'] ? settings['layout'] : dataArray);
 
     const renderComponent = (item, index) => {
       if (item == 'contact1' || item == 'contact2') {
@@ -169,9 +170,10 @@ const LayoutScreen = ({ navigation }) => {
         marginChildrenTop = {width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height}
         parentHeight={height}
         childrenHeight={width < height ? height / 5.5 : height / 3}
-        onDataChange = {(data, callback) => {
+        onDataChange = {(data) => {
           console.log('DATHALKSHAKJHDKAJHDKL', data);
-          setData(data);
+          console.log("DATA TO STATAE", [...data]);
+          setData([...data]);
         }}
         renderItem={renderComponent}
         keyExtractor={item => item}

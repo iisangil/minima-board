@@ -17,15 +17,13 @@ const ApplicationScreen = ({ navigation }) => {
   const { width, height } = Dimensions.get('window');
   console.log("WDIHT HEIGHT", width, height);
 
-  const [ dataState, setData ] = useState(settings['layout']);
-
   const [orientation, setOrientation] = useState(1);
-
+  
   useEffect(() => {
     const unlockScreen = async () => {
       await ScreenOrientation.unlockAsync();
     }
-
+    
     unlockScreen();
   }, []);
 
@@ -33,19 +31,19 @@ const ApplicationScreen = ({ navigation }) => {
     const lockScreen = async () => {
       await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
     }
-
+    
     // set initial orientation
     ScreenOrientation.getOrientationAsync()
     .then((info) =>{
       setOrientation(info.orientation);
     });
-
+    
     // subscribe to future changes
     const subscription = ScreenOrientation.addOrientationChangeListener((evt)=>{
       setOrientation(evt.orientationInfo.orientation);
       console.log('oreitnaiton change', evt.orientationInfo.orientation)
     });
-
+    
     // return a clean up function to unsubscribe from notifications
     return ()=>{
       lockScreen();
@@ -53,18 +51,18 @@ const ApplicationScreen = ({ navigation }) => {
     }
     }, []);
 
-  const components = {
+    const components = {
     'Emergency': <Emergency />,
     'Gas': <Gas />,
     'RPM': <RPM />,
     'Seatbelt': <Seatbelt />,
     'Button': <Button
-              title="Back to Home"
+    title="Back to Home"
               onPress={() => navigation.navigate("Home")}
               />,
     'Speed': <SpeedDisplay />,
   };
-
+  
   const dataArray = [
     'Emergency',
     'Gas',
@@ -76,6 +74,8 @@ const ApplicationScreen = ({ navigation }) => {
     'contact2',
   ];
 
+  const [ dataState, setData ] = useState(settings['layout'] ? settings['layout'] : dataArray);
+  
   const renderComponent = (item, index) => {
     console.log("settings render", settings);
     if (item == 'contact1' || item == 'contact2') {
@@ -85,7 +85,7 @@ const ApplicationScreen = ({ navigation }) => {
       if (item == 'contact1') {
         let contactName = [...settings['contacts']].sort()[0];
         let phoneNumber = settings['numbers'][contactName];
-
+        
         let contact = { contactName, phoneNumber }
         return (
           <View style={{
