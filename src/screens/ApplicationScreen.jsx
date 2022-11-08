@@ -17,6 +17,8 @@ const ApplicationScreen = ({ navigation }) => {
   const { width, height } = Dimensions.get('window');
   console.log("WDIHT HEIGHT", width, height);
 
+  const [ dataState, setData ] = useState(settings['layout']);
+
   const [orientation, setOrientation] = useState(1);
 
   useEffect(() => {
@@ -74,11 +76,13 @@ const ApplicationScreen = ({ navigation }) => {
     'contact2',
   ];
 
-  const [ dataState, setData ] = useState(dataArray);
-
   const renderComponent = (item, index) => {
-    if (settings['contacts'] && item == 'contact1' || item == 'contact2') {
-      if (item == 'contact1') {
+    console.log("settings", settings);
+    if (item == 'contact1' || item == 'contact2') {
+      if (!settings['contacts']) {
+        return;
+      }
+      else if (item == 'contact1') {
         let contactName = [...settings['contacts']].sort()[0];
         let phoneNumber = settings['numbers'][contactName];
 
@@ -155,11 +159,6 @@ const ApplicationScreen = ({ navigation }) => {
       marginChildrenTop = {width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height}
       parentHeight={height}
       childrenHeight={width < height ? height / 5.5 : height / 3}
-      onDataChange = {(data)=>{
-        if (data.length != dataState.length) {
-          setData(data);
-        }
-      }}
       renderItem={renderComponent}
       keyExtractor={item => item}
       dragActivationTreshold={300}

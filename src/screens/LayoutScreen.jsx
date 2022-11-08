@@ -45,6 +45,16 @@ const LayoutScreen = ({ navigation }) => {
     return ()=>{
       lockScreen();
       ScreenOrientation.removeOrientationChangeListener(subscription);
+      console.log('datasate', dataState);
+      let newSettings = Object.assign({}, settings);
+      newSettings['layout'] = dataState;
+      setSettings(newSettings);
+      console.log('new settings', newSettings);
+
+      storage.save({
+        key: 'layout',
+        data: newSettings
+      });
     }
     }, []);
 
@@ -136,6 +146,10 @@ const LayoutScreen = ({ navigation }) => {
         )
       }
     }
+
+    // const layoutHandler = (data) => {
+
+    // }
   
     return (
       
@@ -152,11 +166,9 @@ const LayoutScreen = ({ navigation }) => {
         marginChildrenTop = {width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height}
         parentHeight={height}
         childrenHeight={width < height ? height / 5.5 : height / 3}
-        onDataChange = {(data)=>{
-          console.log('data', data);
-          if (data.length != dataState.length) {
-            setData(data);
-          }
+        onDataChange = {(data, callback) => {
+          console.log('DATHALKSHAKJHDKAJHDKL', data);
+          setData(data);
         }}
         renderItem={renderComponent}
         keyExtractor={item => item}
