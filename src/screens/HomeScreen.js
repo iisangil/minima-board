@@ -23,7 +23,7 @@ export function HomeScreen({ navigation }) {
             onPress={() => navigation.navigate('Display')}
           />
           <Button
-          title="Start Applicaton"
+          title="Start Application"
           onPress={() => navigation.navigate("Application")}
           />
         </View>
