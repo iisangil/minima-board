@@ -21,21 +21,21 @@ function Gas() {
   const { settings } = useContext(SettingsContext);
 
   // State to store gas value
-const [gasLevel, setGas] = useState(20);
+  const [gasLevel, setGas] = useState(20);
 
-// Function to increment gas percent by 1
-const incrementCount = () => {
-  // Update state with incremented value
-  setGas(gasLevel + 1);
-  updateGasLevel(gasLevel);
-};
-// Function to decrement gas percent by 1
-const decrementCount = () => {
-  if (gasLevel > 0){
-    setGas(gasLevel - 1);
+  // Function to increment gas percent by 1
+  const incrementCount = () => {
+    // Update state with incremented value
+    setGas(gasLevel + 1);
     updateGasLevel(gasLevel);
-  }
-};
+  };
+  // Function to decrement gas percent by 1
+  const decrementCount = () => {
+    if (gasLevel > 0){
+      setGas(gasLevel - 1);
+      updateGasLevel(gasLevel);
+    }
+  };
 
   const gasInfo = () => {
     console.log("Gas Level: ", currentGas);

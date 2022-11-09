@@ -7,34 +7,35 @@ import { SettingsContext, storage } from '../context/settingsContext';
 
 import {styles} from '../components/Styles.js';
 
-export function GasCustomizationScreen({navigation}){
-  const { settings, setSettings } = useContext(SettingsContext);
+export function GasCustomizationScreen({navigation}) {
+  let currMode = 1;
   const [selected, setSelected] = React.useState("");
+  // const { settings, setSettings } = useContext(SettingsContext);
 
-  const components = {
-    'Emergency': <Emergency />,
-    'Gas': <Gas />,
-    'RPM': <RPM />,
-    'Seatbelt': <Seatbelt />,
-    'Button': <Button
-              title="Back to Home"
-              onPress={() => navigation.navigate("Home")}
-              />,
-    'Speed': <SpeedDisplay />,
-  };
+  // const components = {
+  //   'Emergency': <Emergency />,
+  //   'Gas': <Gas />,
+  //   'RPM': <RPM />,
+  //   'Seatbelt': <Seatbelt />,
+  //   'Button': <Button
+  //             title="Back to Home"
+  //             onPress={() => navigation.navigate("Home")}
+  //             />,
+  //   'Speed': <SpeedDisplay />,
+  // };
 
-  const selectFeature = (feature) => {
-    let newSettings = Object.assign({}, settings);
-    newSettings[feature] = !newSettings[feature]; 
-    setSettings(newSettings);
-    console.log("NEWSETTINGS", newSettings);
+  // const selectFeature = (feature) => {
+  //   let newSettings = Object.assign({}, settings);
+  //   newSettings[feature] = !newSettings[feature]; 
+  //   setSettings(newSettings);
+  //   console.log("NEWSETTINGS", newSettings);
 
-    storage.save({
-      key: 'settings',
-      data: newSettings
-    });
-  } 
-  
+  //   storage.save({
+  //     key: 'settings',
+  //     data: newSettings
+  //   });
+  // } 
+
   const data = [{key:'1',value:'Hidden'},
   {key:'2',value:'Alert'},
   {key:'3',value:'Percentage'},
