@@ -3,6 +3,8 @@ import { View, Text, Button} from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { SettingsContext } from '../context/settingsContext';
 import { styles } from './Styles';
+import RNSpeedometer from 'react-native-speedometer'
+
 
 var isLow = false;
 // If the current gas level % is below this threshold then an alert should be set
@@ -53,6 +55,8 @@ const decrementCount = () => {
             title="Decrement"
             onPress={() => decrementCount()}
         />
+        <RNSpeedometer value={gasLevel} size={100}/>
+
     </View>
 
   ) : <></>;
