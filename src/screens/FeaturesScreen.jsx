@@ -9,6 +9,7 @@ import {SettingsScreen, SettingsData, Chevron} from 'react-native-settings-scree
 import ColorPicker from 'react-native-wheel-color-picker';
 
 import { changeRPMThreshold } from '../components/RPM';
+import { changeSpeedThreshold } from '../components/Speed';
 
 const FeaturesScreen = ({ navigation }) => {
   state = {
@@ -69,6 +70,21 @@ const FeaturesScreen = ({ navigation }) => {
     });
   }
 
+  let speedThreshold = settings["speedThreshold"]
+  const handleSpeed = (speed) => {
+    changeSpeedThreshold(speed)
+    speedThreshold = settings["speedThreshold"]
+
+    let newSettings = Object.assign({}, settings);
+    newSettings["speedThreshold"] = speed
+    setSettings(newSettings);
+  
+    storage.save({
+      key: 'settings',
+      data: newSettings
+    });
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#8c231a" />
@@ -87,13 +103,18 @@ const FeaturesScreen = ({ navigation }) => {
                 renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('PresetThemes')} />
               },
               {
-                title: 'Customize Colors',
-                subtitle: 'Colors for alerts, backgrounds',
+                title: 'Application background',
+                subtitle: 'Change application background color',
                 renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('ColorCustomization')} />
               },
+              // {
+              //   title: 'Speedometer Color',
+              //   subtitle: 'Change speedometer color',
+              //   renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('SpeedColor')} />
+              // },
               {
-                title: 'Customize Font',
-                subtitle: 'Font Type, Font Colors',
+                title: 'Font and Alert Icon Color',
+                subtitle: 'Change font and icon color',
                 renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('FontCustomization')} />
               },
  
@@ -148,12 +169,19 @@ const FeaturesScreen = ({ navigation }) => {
             header: 'Thresholds'.toUpperCase(),
             rows: [
               {
-                title: 'Speed limit threshold',
-                subtitle: 'Min and max over and below speed limits',
-                showDisclosureIndicator: true,
+                title: 'Speed limit maximum',
+                subtitle: 'Maximum Speed Limit',
+
+                subtitle: 'Current: ' + speedThreshold,
+                renderAccessory:() => <TextInput
+                  style={styles.input}
+                  onChangeText={handleSpeed}
+                  placeholder="Maximum"
+                  keyboardType="numeric"
+                />
               },
               {
-                title: 'RPM limit threshold',
+                title: 'RPM limit maximum',
                 subtitle: 'Current: ' + rpmThreshold,
                 renderAccessory:() => <TextInput
                   style={styles.input}

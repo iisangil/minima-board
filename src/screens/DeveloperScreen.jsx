@@ -7,6 +7,7 @@ import { updateRPM } from '../components/RPM';
 import { updateSeatbelt } from '../components/Seatbelt';
 
 import { styles } from '../components/Styles';
+import { updateSpeed } from '../components/Speed';
 
 const DeveloperScreen = ({ navigation }) => {
   const { settings, setSettings } = useContext(SettingsContext);
@@ -24,6 +25,9 @@ const DeveloperScreen = ({ navigation }) => {
     console.log("Seatbelt on: ", isSeatbeltOn)
     updateSeatbelt(isSeatbeltOn)
   }
+  const handleSpeed = (speed) =>{
+    updateSpeed(speed)
+  }
 
   // Sets all values to numbers that would set off alerts and goes to the app
   const turnOnAllAlerts = () => {
@@ -31,6 +35,7 @@ const DeveloperScreen = ({ navigation }) => {
     updateGasLevel(20)
     updateRPM(3000)
     updateSeatbelt(false)
+    // updateSpeed(100)
     navigation.navigate('Application')
   }
 
@@ -58,6 +63,14 @@ const DeveloperScreen = ({ navigation }) => {
                 style={styles.input}
                 onChangeText={handleRPM}
                 placeholder="RPMs"
+                keyboardType="numeric"
+            />
+        </View>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TextInput
+                style={styles.input}
+                onChangeText={handleSpeed}
+                placeholder="Speed"
                 keyboardType="numeric"
             />
         </View>
