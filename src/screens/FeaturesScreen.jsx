@@ -36,6 +36,15 @@ const FeaturesScreen = ({ navigation }) => {
     });
   } 
 
+  // default gasMode
+  let gasMode = 'Hidden';
+
+  const changeGasMode = () => {
+    let modes = ['Hidden', 'Alert', 'Percentage', 'Gauge'];
+    gasMode = modes.indexOf(gasMode)+1 < 4 ? modes[modes.indexOf(gasMode)+1] : modes[0]
+    console.log(gasMode);
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#8c231a" />
@@ -50,12 +59,17 @@ const FeaturesScreen = ({ navigation }) => {
               'Customize which alerts you would like to receive.',
             rows: [
               {
-                title: 'Fuel Alert',
+                title: "Fuel Options",
                 subtitle: 'Alert when gas is running low',
-                renderAccessory:() => <Switch
+                renderAccessory:() => <Button
+                    title={gasMode}
                     value={settings['Gas']}
-                    onChange={() => selectFeature("Gas")}
+                    onPress={() => changeGasMode()}
                   />
+                // renderAccessory:() => <Dropdown
+                // label='Gas Mode'
+                // data={gasMode}
+                // />
               },
               {
                 title: 'RPM Alert',
@@ -73,14 +87,6 @@ const FeaturesScreen = ({ navigation }) => {
                     onChange={() => selectFeature("Seatbelt")}
                   />
               }
-              // {
-              //   title: 'Text',
-              //   renderAccessory: () => (
-              //     <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
-              //       Maybe
-              //     </Text>
-              //   ),
-              // },
               
             ],
           },
