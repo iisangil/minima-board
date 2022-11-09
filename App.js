@@ -14,6 +14,8 @@ import { DefaultDisplayScreen } from './src/screens/DefaultDisplayScreen.js';
 import ApplicationScreen from './src/screens/ApplicationScreen';
 import FeaturesScreen from './src/screens/FeaturesScreen';
 import DeveloperScreen from './src/screens/DeveloperScreen';
+import GasCustomizationScreen from './src/screens/GasCustomizationScreen';
+
 
 import { SettingsContext, storage } from './src/context/settingsContext';
 
@@ -63,6 +65,7 @@ function App() {
           <Stack.Screen name="Application" component={ApplicationScreen} />
           <Stack.Screen name="Features" component={FeaturesScreen} />
           <Stack.Screen name="Developer" component={DeveloperScreen} />
+          <Stack.Screen name="GasMode" component={GasCustomizationScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       </SettingsContext.Provider>

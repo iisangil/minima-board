@@ -37,13 +37,13 @@ const FeaturesScreen = ({ navigation }) => {
   } 
 
   // default gasMode
-  let gasMode = 'Hidden';
+  // let gasMode = 'Hidden';
 
-  const changeGasMode = () => {
-    let modes = ['Hidden', 'Alert', 'Percentage', 'Gauge'];
-    gasMode = modes.indexOf(gasMode)+1 < 4 ? modes[modes.indexOf(gasMode)+1] : modes[0]
-    console.log(gasMode);
-  }
+  // const changeGasMode = () => {
+  //   let modes = ['Hidden', 'Alert', 'Percentage', 'Gauge'];
+  //   gasMode = modes.indexOf(gasMode)+1 < 4 ? modes[modes.indexOf(gasMode)+1] : modes[0]
+  //   console.log(gasMode);
+  // }
 
   return (
     <View style={styles.container}>
@@ -58,18 +58,19 @@ const FeaturesScreen = ({ navigation }) => {
             footer:
               'Customize which alerts you would like to receive.',
             rows: [
+              // {
+              //   title: "Fuel Options",
+              //   subtitle: 'Alert when gas is running low',
+              //   renderAccessory:() => <Button
+              //       title={gasMode}
+              //       value={settings['Gas']}
+              //       onPress={() => changeGasMode()}
+              //     />
+              // },
               {
-                title: "Fuel Options",
-                subtitle: 'Alert when gas is running low',
-                renderAccessory:() => <Button
-                    title={gasMode}
-                    value={settings['Gas']}
-                    onPress={() => changeGasMode()}
-                  />
-                // renderAccessory:() => <Dropdown
-                // label='Gas Mode'
-                // data={gasMode}
-                // />
+                title: 'Fuel Display Options',
+                subtitle: 'Different modes of display for the fuel',
+                renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('GasMode')} />
               },
               {
                 title: 'RPM Alert',
