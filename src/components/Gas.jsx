@@ -22,11 +22,16 @@ const Gas = () => {
     console.log("Gas Level: ", currentGas);
   }
 
+  let textStyle = Object.assign({}, styles.text);
+  textStyle['color'] = settings["FontColor"];
+  let subtextStyle = Object.assign({}, styles.subText);
+  subtextStyle['color'] = settings["FontColor"];
+
   return isLow ? (
     <View>    
-      <FontAwesome5 name="gas-pump" size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={gasInfo}>
-        <Text style={styles.text}> {currentGas}</Text>
-        <Text style={styles.subText}>%</Text>
+      <FontAwesome5 name="gas-pump" size={42} color={settings["FontColor"]} onPress={gasInfo}>
+      <Text style={textStyle}> {currentGas}</Text>
+      <Text style={subtextStyle}>%</Text>
       </FontAwesome5>
     </View>
 

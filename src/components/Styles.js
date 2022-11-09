@@ -6,14 +6,12 @@ const fontFamily = Platform.OS === 'ios' ? 'Avenir' : 'sans-serif'
 
 export const styles = StyleSheet.create({
     text: {
-      color: "black",
       fontSize: 42,
       lineHeight: 84,
       fontWeight: "bold",
       textAlign: "center",
     },
     subText: {
-      color: "black",
       fontSize: 13,
       lineHeight: 84,
       textAlign: "center",

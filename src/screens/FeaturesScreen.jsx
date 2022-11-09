@@ -82,18 +82,19 @@ const FeaturesScreen = ({ navigation }) => {
             header: 'Visual Settings'.toUpperCase(),
             rows: [
               {
-                title: 'Dark Mode',
-                renderAccessory:() => <Switch
-                    value={settings['Theme'] != 'Light'}
-                    onChange={() => changeTheme("Theme")}
-                  />
-                
-                // <Button title="Switch Theme" onPress={changeTheme} />
+                title: 'Preset Themes',
+                subtitle: 'Preset Themes for Font and Background',
+                renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('PresetThemes')} />
               },
               {
                 title: 'Customize Colors',
                 subtitle: 'Colors for alerts, backgrounds',
                 renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('ColorCustomization')} />
+              },
+              {
+                title: 'Customize Font',
+                subtitle: 'Font Type, Font Colors',
+                renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('FontCustomization')} />
               },
  
             ],
