@@ -40,7 +40,7 @@ const ApplicationScreen = ({ navigation }) => {
   const renderComponent = (item, index) => {
     console.log(item, settings[item])
     console.log('data state', dataState);
-    if (settings[item] || item == 'Button' || item == 'Speed') {
+    if (settings[item] || item == 'Button' || item == 'Speed' || item == 'Gas') {
       return (
         <View style={{
           width: width / 3, height: height / 3, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
