@@ -16,7 +16,9 @@ import ApplicationScreen from './src/screens/ApplicationScreen';
 import FeaturesScreen from './src/screens/FeaturesScreen';
 import DeveloperScreen from './src/screens/DeveloperScreen';
 import { ColorCustomizationScreen } from './src/screens/ColorCustomizationScreen';
+import { FontCustomizationScreen } from './src/screens/FontCustomizationScreen';
 import ContactsScreen from './src/screens/ContactsScreen';
+import { PresetThemeScreen } from './src/screens/PresetThemeScreen';
 
 import { SettingsContext, storage } from './src/context/settingsContext';
 
@@ -64,12 +66,23 @@ function App() {
     console.warn(err.message);
   });
 
+  var theme = {
+    dark: false,
+    colors: {
+      primary: settings['Background'],
+      background: settings['Background'],
+      card: settings['FontColor'],
+      text: settings['FontColor'],
+      border: settings['Background'],
+      notification: settings['FontColor'],
+    },
+  };
+
 
   return (
       <SettingsContext.Provider value={settingsData} >
 
-      <NavigationContainer theme={settings["Theme"] == "Light" ? DefaultTheme : DarkTheme}>
-        
+      <NavigationContainer theme={theme}>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Settings" component={FeaturesScreen} />
@@ -78,6 +91,8 @@ function App() {
           <Stack.Screen name="Application" component={ApplicationScreen} />
           <Stack.Screen name="Developer" component={DeveloperScreen} />
           <Stack.Screen name = "ColorCustomization" component={ColorCustomizationScreen}/>
+          <Stack.Screen name = "PresetThemes" component={PresetThemeScreen}/>
+          <Stack.Screen name = "FontCustomization" component={FontCustomizationScreen}/>
           <Stack.Screen name='Contacts' component={ContactsScreen} />
           <Stack.Screen name='Layout' component={LayoutScreen} />
         </Stack.Navigator>

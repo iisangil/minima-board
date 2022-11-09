@@ -59,6 +59,7 @@ const ApplicationScreen = ({ navigation }) => {
     'Button': <Button
     title="Back to Home"
               onPress={() => navigation.navigate("Home")}
+              color={settings["FontColor"]}
               />,
     'Speed': <SpeedDisplay />,
   };
@@ -182,7 +183,7 @@ const ApplicationScreen = ({ navigation }) => {
   const refContainer = useRef();
 
   return (
-    <View style={{ backgroundColor: settings["Background"], width: width, height: height }}>
+    <View style={{color: settings["FontColor"], backgroundColor: settings["Background"], width: width, height: height }}>
       <AnySizeDragSortableView
       ref={refContainer}
       dataSource={dataState}

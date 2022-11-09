@@ -23,7 +23,7 @@ const TirePressure = () => {
   }
 
   return isLow ? (
-    <MaterialCommunityIcons name="car-tire-alert" size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={tirePressureInfo} />
+    <MaterialCommunityIcons name="car-tire-alert" size={42} color={settings["FontColor"]}  onPress={tirePressureInfo} />
   ) : <></>;
 }
 

@@ -12,12 +12,11 @@ export const Emergency = () => {
   }
 
   let contactStyle = Object.assign({}, styles.contact);
-  contactStyle['borderColor'] = settings['Theme'] == 'Light' ? 'black' : 'white';
-  let color = settings['Theme'] == 'Light' ? 'black' : 'white';
+  contactStyle['borderColor'] = settings["FontColor"];
 
   return (
     <View style={contactStyle}>
-      <Text style={{ fontSize: '28', color: color, }} onPress={callEmergency}>911</Text>
+      <Text style={{ fontSize: '28', color: settings["FontColor"], }} onPress={callEmergency}>911</Text>
     </View>
   )
 }
@@ -30,8 +29,7 @@ export const Contact = (contact) => {
   }
 
   let contactStyle = Object.assign({}, styles.contact);
-  contactStyle['borderColor'] = settings['Theme'] == 'Light' ? 'black' : 'white';
-  let color = settings['Theme'] == 'Light' ? 'black' : 'white';
+  contactStyle['borderColor'] = settings["FontColor"];
 
   const contactName = () => {
     let names = contact.contact.contactName.toUpperCase().split(' ');
@@ -41,7 +39,7 @@ export const Contact = (contact) => {
 
   return (
     <View style={contactStyle}>
-      <Text style={{ fontSize: '28', color: color, }} onPress={callContact}>{contactName()}</Text>
+      <Text style={{ fontSize: '28', color: settings["FontColor"], }} onPress={callContact}>{contactName()}</Text>
     </View>
   )
 }

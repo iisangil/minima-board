@@ -18,16 +18,23 @@ import { watchPositionAsync } from 'expo-location';
     </View>
   )
 
-const PickerComponent = () => {
+var type = "Background"
+
+export const SelectType = (newType) => {
+  type = newType
+  console.log(type)
+}
+
+const PickerComponent = (component) => {
 
     const { settings, setSettings } = useContext(SettingsContext);
 
     
-    const selectColor = (color) => {
-
+    const selectColor = (color, type) => {
+        console.log(type)
         let newSettings = Object.assign({}, settings);
 
-        newSettings["Background"] = color;
+        newSettings[type] = color;
 
         setSettings(newSettings);
         console.log("NEWSETTINGS", newSettings);
@@ -48,7 +55,7 @@ const PickerComponent = () => {
             </Text>
             <ColorPicker
             sliderComponent={Slider}
-            onColorSelected={color => selectColor(color)}
+            onColorSelected={color => selectColor(color, type)}
             style={styles.colorContainer}
         />
         </View>
