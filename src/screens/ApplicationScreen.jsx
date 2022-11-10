@@ -100,15 +100,92 @@ const ApplicationScreen = ({ navigation }) => {
           {components[item]}
         </View>
       )
+    }  else if (item == 'contact1' || item == 'contact2') {
+      if (!settings['contacts'] || settings['contacts'].length == 0) {
+        return;
+      }
+      if (item == 'contact1') {
+        let contactId = [...settings['contacts']].sort()[0];
+
+        let { contactName, phoneNumber } = settings['info'][contactId];
+        return (
+          <View
+          style={{
+            width: width < height ? width / 3 : width / 5.5,
+            height: width < height ? height / 5.5 : height / 3,
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: 'solid',
+            borderWidth: '1px',
+            borderRadius: '35',
+            marginLeft: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+            marginRight: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+            marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+            marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          }}>
+            <Contact contact={{ contactName, phoneNumber }} />
+          </View>
+        )
+      }
+      else if (settings['contacts'].length > 1) {
+        let contactId = [...settings['contacts']].sort()[1];
+
+        let { contactName, phoneNumber } = settings['info'][contactId];
+        return (
+          <View
+          style={{
+            width: width < height ? width / 3 : width / 5.5,
+            height: width < height ? height / 5.5 : height / 3,
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: 'solid',
+            borderWidth: '1px',
+            borderRadius: '35',
+            marginLeft: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+            marginRight: width < height ? 0.08333333333 * width : 0.03409090909 * width / 2,
+            marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+            marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          }}>
+            <Contact contact={{ contactName, phoneNumber }} />
+          </View>
+        )
+      }
+    }
+    else if (settings[item] || item == 'Button') {
+      return (
+        <View
+        style={{
+        width: (width < height ? width / 3 : width / 5.5),
+        height: width < height ? height / 5.5 : height / 3,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        border: 'solid',
+        borderWidth: '1px',
+        borderRadius: '35',
+        marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+        marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+        marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+        marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+        }}>
+          {components[item]}
+        </View>
+      )
     }
   }
 
-
+  const refContainer = useRef();
 
   return (
     
-    <View>
-      <DragSortableView
+    <View style={{color: settings["FontColor"], backgroundColor: settings["Background"], width: width, height: height }}>
+      <AnySizeDragSortableView
+      ref={refContainer}
       dataSource={dataState}
       renderItem={renderComponent}
       keyExtractor={item => item}

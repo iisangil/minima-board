@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { View, Text, Button} from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { SettingsContext } from '../context/settingsContext';
-import { styles } from './Styles';
+import { styles } from '../components/Styles';
 import RNSpeedometer from 'react-native-speedometer'
 
 
