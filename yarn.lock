@@ -1940,16 +1940,14 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.11.tgz#2f4c6e10bee0786abff4604e39a37ded6f3980ce"
   integrity sha512-rQfMIGSR/1r/SyN87+VD8xHHzDYeHaJq6elOSCAD+0iLagXkSI2pfA0LmSXP21uw5i3em7GkkRjfJ8wpqWXZNw==
 
-<<<<<<< HEAD
-"@react-native-masked-view/masked-view@^0.2.6", "@react-native-masked-view/masked-view@react-native-masked-view/masked-view":
-  version "0.2.8"
-  resolved "https://codeload.github.com/react-native-masked-view/masked-view/tar.gz/043bd21aa5ed72fc82bc2df96b6332b2d099e104"
-=======
 "@react-native-community/slider@^4.3.3":
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-4.3.3.tgz#281e90523ab3fac3463edf271ffe465cfd9932c9"
   integrity sha512-eVhMaVR08wWlseVWlDS7zgdhbVY0n2i7BF1qRxK+2N1VIKd7NsTIRzL57sFLgHVjbUmu/+hHfxCzLHmEaGxIQg==
->>>>>>> b1faf71504985b97e12316077038cab662307d79
+
+"@react-native-masked-view/masked-view@^0.2.6", "@react-native-masked-view/masked-view@react-native-masked-view/masked-view":
+  version "0.2.8"
+  resolved "https://codeload.github.com/react-native-masked-view/masked-view/tar.gz/043bd21aa5ed72fc82bc2df96b6332b2d099e104"
 
 "@react-native/assets@1.0.0":
   version "1.0.0"
@@ -9386,11 +9384,7 @@ prompts@^2.3.2, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-<<<<<<< HEAD
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.9, prop-types@^15.6.2, prop-types@^15.7.2:
-=======
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.7.2:
->>>>>>> b1faf71504985b97e12316077038cab662307d79
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.9, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
