@@ -6,15 +6,13 @@ const fontFamily = Platform.OS === 'ios' ? 'Avenir' : 'sans-serif'
 
 export const styles = StyleSheet.create({
     text: {
-      color: "black",
       fontSize: 42,
       lineHeight: 84,
       fontWeight: "bold",
       textAlign: "center",
     },
     subText: {
-      color: "black",
-      fontSize: 14,
+      fontSize: 13,
       lineHeight: 84,
       textAlign: "center",
     },
@@ -32,6 +30,14 @@ export const styles = StyleSheet.create({
       lineHeight: 50,
       fontWeight: "bold",
       alignSelf: "left",
+      marginHorizontal: 50
+    },
+    colorText: {
+      color: "black",
+      fontSize: 20,
+      lineHeight: 50,
+      fontWeight: "bold",
+      alignSelf: "center",
       marginHorizontal: 50
     },
     image: {
@@ -83,6 +89,19 @@ export const styles = StyleSheet.create({
       borderColor: '#ccc',
       flexDirection: 'row',
     },
+    heroPickerContainer: {
+      marginTop: 0,
+      marginBottom: 0,
+      paddingVertical: 100,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white',
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderColor: '#ccc',
+      flexDirection: 'row',
+    },
+    
     heroImage: {
       width: 80,
       height: 80,
@@ -109,7 +128,22 @@ export const styles = StyleSheet.create({
     colorContainer:{
       width:350, 
       height:400,
+      marginTop: 50,
+      alignSelf: 'bottom'
+    },
+
+    background:{
+      backgroundColor: 'gray',
       marginBottom: 40, 
       alignSelf: 'center'
+    },
+    contact: {
+      height: 55,
+      width: 55,
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: 'solid',
+      borderWidth: 2,
+      borderRadius: 50,
     }
   })

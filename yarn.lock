@@ -1940,9 +1940,16 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.11.tgz#2f4c6e10bee0786abff4604e39a37ded6f3980ce"
   integrity sha512-rQfMIGSR/1r/SyN87+VD8xHHzDYeHaJq6elOSCAD+0iLagXkSI2pfA0LmSXP21uw5i3em7GkkRjfJ8wpqWXZNw==
 
+<<<<<<< HEAD
 "@react-native-masked-view/masked-view@^0.2.6", "@react-native-masked-view/masked-view@react-native-masked-view/masked-view":
   version "0.2.8"
   resolved "https://codeload.github.com/react-native-masked-view/masked-view/tar.gz/043bd21aa5ed72fc82bc2df96b6332b2d099e104"
+=======
+"@react-native-community/slider@^4.3.3":
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-4.3.3.tgz#281e90523ab3fac3463edf271ffe465cfd9932c9"
+  integrity sha512-eVhMaVR08wWlseVWlDS7zgdhbVY0n2i7BF1qRxK+2N1VIKd7NsTIRzL57sFLgHVjbUmu/+hHfxCzLHmEaGxIQg==
+>>>>>>> b1faf71504985b97e12316077038cab662307d79
 
 "@react-native/assets@1.0.0":
   version "1.0.0"
@@ -5069,6 +5076,14 @@ expo-constants@~13.2.2, expo-constants@~13.2.4:
     "@expo/config" "~7.0.0"
     uuid "^3.3.2"
 
+expo-contacts@~10.3.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/expo-contacts/-/expo-contacts-10.3.0.tgz#c0b9806bb4b77466b9b5b1b24f9b3f72105fe926"
+  integrity sha512-fLyrCUEfdbm9a3GEvSHLwJoEK3aLaWCKLI/8XsTARZFYFlby2Um6UUdSaAsd+zDgM7LvkTnkUvz0s/6+pDHLng==
+  dependencies:
+    "@expo/config-plugins" "~5.0.0"
+    uuid "^3.4.0"
+
 expo-error-recovery@~3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/expo-error-recovery/-/expo-error-recovery-3.2.0.tgz#3a4543382904a5e70829cb41d7fc0f022c2bef6e"
@@ -5145,6 +5160,11 @@ expo-pwa@0.0.123:
     chalk "^4.0.0"
     commander "2.20.0"
     update-check "1.5.3"
+
+expo-screen-orientation@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/expo-screen-orientation/-/expo-screen-orientation-5.0.1.tgz#b2372d69ea968f04b5f5e7104cdc1c9544a07847"
+  integrity sha512-/EytlprTKrGny1XYvku+UaGgsEPqtAU7Q8fCt9QtszqCj4hhQoEEa7/LJ4Bds5LNDdyd/syh0dkkJ3YtSI6h1Q==
 
 expo-status-bar@~1.4.0:
   version "1.4.0"
@@ -9366,7 +9386,11 @@ prompts@^2.3.2, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
+<<<<<<< HEAD
 prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.9, prop-types@^15.6.2, prop-types@^15.7.2:
+=======
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.7.2:
+>>>>>>> b1faf71504985b97e12316077038cab662307d79
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -9678,6 +9702,11 @@ react-native-codegen@^0.69.2:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-color-picker-ios@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-color-picker-ios/-/react-native-color-picker-ios-0.1.2.tgz#8e74ea9ea57040744964d66a95216a6bff3ff741"
+  integrity sha512-P+GPATGexpqi6nRg48dxggvboYBIdD7bU1qJfftgdF3Ac05OoKBHsnavgHx+LllrxNhsOHf4HlZ2QNzkFCWSeA==
+
 react-native-color-picker@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/react-native-color-picker/-/react-native-color-picker-0.6.0.tgz#3b06eaaa0dfa9d90b45bf37bbb13776625c1fd2b"
@@ -9826,6 +9855,13 @@ react-native-settings-screen@^2.2.1:
   integrity sha512-qmcO+CJyRAbuTeON/IvJy5CCK7dXz8EopwzREhmkrg5wsUPNlZLIU0JqsicbxA4oZ0pMYA2cwPUUBAb+dmMALQ==
   dependencies:
     styled-components "^3.4.9"
+
+react-native-slider@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/react-native-slider/-/react-native-slider-0.11.0.tgz#b68a0bc43c8422b24cd57947cc5ac2bcdb58fadc"
+  integrity sha512-jV9K87eu9uWr0uJIyrSpBLnCKvVlOySC2wynq9TFCdV9oGgjt7Niq8Q1A8R8v+5GHsuBw/s8vEj1AAkkUi+u+w==
+  dependencies:
+    prop-types "^15.5.6"
 
 react-native-sortable-grid@^2.0.0:
   version "2.0.0"

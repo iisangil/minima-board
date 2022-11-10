@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { View, Switch, Text, Button, SectionList, SafeAreaView, StatusBar, Platform, RefreshControl } from 'react-native';
+import { View, Switch, Text, Button, SectionList, SafeAreaView, StatusBar, Platform, RefreshControl, TextInput } from 'react-native';
 import { SettingsContext, storage } from '../context/settingsContext';
 
 import { styles } from '../components/Styles';
@@ -7,6 +7,9 @@ import Icon from 'react-native-vector-icons/Entypo'
 import PickerComponent from '../components/ColorPicker';
 import {SettingsScreen, SettingsData, Chevron} from 'react-native-settings-screen';
 import ColorPicker from 'react-native-wheel-color-picker';
+
+import { changeRPMThreshold } from '../components/RPM';
+import { changeSpeedThreshold } from '../components/Speed';
 
 const FeaturesScreen = ({ navigation }) => {
   state = {
@@ -26,13 +29,16 @@ const FeaturesScreen = ({ navigation }) => {
   )
 
   const changeTheme = () => {
+    // console.log('settings', settings);
     let newSettings = Object.assign({}, settings);
     newSettings["Theme"] = settings["Theme"] == "Light" ? "Dark" : "Light";
     setSettings(newSettings);
+    // setSettings({});
 
     storage.save({
       key: 'settings',
       data: newSettings
+      // data: {}
     });
   }
 
@@ -48,14 +54,36 @@ const FeaturesScreen = ({ navigation }) => {
     });
   } 
 
-  // default gasMode
-  // let gasMode = 'Hidden';
+  let rpmThreshold = settings["RPMThreshold"]
 
-  // const changeGasMode = () => {
-  //   let modes = ['Hidden', 'Alert', 'Percentage', 'Gauge'];
-  //   gasMode = modes.indexOf(gasMode)+1 < 4 ? modes[modes.indexOf(gasMode)+1] : modes[0]
-  //   console.log(gasMode);
-  // }
+  const handleRPM = (RPM) => {
+    changeRPMThreshold(RPM)
+    rpmThreshold = settings["RPMThreshold"]
+
+    let newSettings = Object.assign({}, settings);
+    newSettings["RPMThreshold"] = RPM
+    setSettings(newSettings);
+  
+    storage.save({
+      key: 'settings',
+      data: newSettings
+    });
+  }
+
+  let speedThreshold = settings["speedThreshold"]
+  const handleSpeed = (speed) => {
+    changeSpeedThreshold(speed)
+    speedThreshold = settings["speedThreshold"]
+
+    let newSettings = Object.assign({}, settings);
+    newSettings["speedThreshold"] = speed
+    setSettings(newSettings);
+  
+    storage.save({
+      key: 'settings',
+      data: newSettings
+    });
+  }
 
   return (
     <View style={styles.container}>
@@ -70,18 +98,24 @@ const FeaturesScreen = ({ navigation }) => {
             header: 'Visual Settings'.toUpperCase(),
             rows: [
               {
-                title: 'Dark Mode',
-                renderAccessory:() => <Switch
-                    value={settings['Theme']}
-                    onChange={() => changeTheme("Theme")}
-                  />
-                
-                // <Button title="Switch Theme" onPress={changeTheme} />
+                title: 'Preset Themes',
+                subtitle: 'Preset Themes for Font and Background',
+                renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('PresetThemes')} />
               },
               {
-                title: 'Customize Colors',
-                subtitle: 'Colors for alerts, backgrounds',
+                title: 'Application background',
+                subtitle: 'Change application background color',
                 renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('ColorCustomization')} />
+              },
+              // {
+              //   title: 'Speedometer Color',
+              //   subtitle: 'Change speedometer color',
+              //   renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('SpeedColor')} />
+              // },
+              {
+                title: 'Font and Alert Icon Color',
+                subtitle: 'Change font and icon color',
+                renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('FontCustomization')} />
               },
  
             ],
@@ -121,7 +155,7 @@ const FeaturesScreen = ({ navigation }) => {
                 renderAccessory:() => <Switch
                     value={settings['Seatbelt']}
                     onChange={() => selectFeature("Seatbelt")}
-                  />
+                  />,
               }
               
             ],
@@ -133,14 +167,26 @@ const FeaturesScreen = ({ navigation }) => {
             header: 'Thresholds'.toUpperCase(),
             rows: [
               {
-                title: 'Speed limit threshold',
-                subtitle: 'Min and max over and below speed limits',
-                showDisclosureIndicator: true,
+                title: 'Speed limit maximum',
+                subtitle: 'Maximum Speed Limit',
+
+                subtitle: 'Current: ' + speedThreshold,
+                renderAccessory:() => <TextInput
+                  style={styles.input}
+                  onChangeText={handleSpeed}
+                  placeholder="Maximum"
+                  keyboardType="numeric"
+                />
               },
               {
-                title: 'RPM limit threshold',
-                subtitle: 'Highest RPM limits',
-                showDisclosureIndicator: true,
+                title: 'RPM limit maximum',
+                subtitle: 'Current: ' + rpmThreshold,
+                renderAccessory:() => <TextInput
+                  style={styles.input}
+                  onChangeText={handleRPM}
+                  placeholder="RPMs"
+                  keyboardType="numeric"
+                />
               },
             
             ],
@@ -158,39 +204,24 @@ const FeaturesScreen = ({ navigation }) => {
                   />
               }, 
               {
-                title: 'Caller Whitelist',
-                subtitle: 'Block certain callers',
-                renderAccessory:() => <Switch
-                    value={settings['Emergency']}
-                    onChange={() => selectFeature("Emergency")}
-                  />
+                title: 'Caller Selection',
+                subtitle: 'Quick-call Up to 2 Contacts',
+                renderAccessory: () => <Button title=">" onPress={() => navigation.navigate('Contacts')} />
               }
               
             ],
           },
+          {
+            type: 'SECTION',
+            header: 'Display'.toUpperCase(),
+            rows: [
+              {
+                title: 'Customize Display Layout',
+                renderAccessory: () => <Button title=">" onPress={() => navigation.navigate('Layout')} />
+              }, 
+            ],
+          },
           
-          // {
-          //   type: 'SECTION',
-          //   header: 'Color Customization'.toUpperCase(),
-          //   rows: [
-
-          //     {
-          //       title: 'Background Color',
-          //       // renderAccessory: () => (
-          //       //   <View
-          //       //     style={{
-          //       //       width: 30,
-          //       //       height: 30,
-          //       //       backgroundColor: 'blue',
-          //       //     }}
-          //       //   />
-          //       // ),
-          //       showDisclosureIndicator: false, 
-          //     },
-              
-          //   ]
-            
-          // },
 
           {
             type: 'CUSTOM_VIEW',
