@@ -76,10 +76,12 @@ const ApplicationScreen = ({ navigation }) => {
   ];
 
   const [ dataState, setData ] = useState(settings['layout'] ? settings['layout'] : dataArray);
+
+  console.log("settings render", settings);
   
   const renderComponent = (item, index) => {
-    console.log("settings render", settings);
-    if (item == 'Speed' || (item == 'GasMode' && settings[item] != 1)) {
+    console.log(item);
+    if (item == 'Speed') {
       return (
         <View
         style={{
@@ -100,7 +102,8 @@ const ApplicationScreen = ({ navigation }) => {
           {components[item]}
         </View>
       )
-    }  else if (item == 'contact1' || item == 'contact2') {
+    }  
+    else if (item == 'contact1' || item == 'contact2') {
       if (!settings['contacts'] || settings['contacts'].length == 0) {
         return;
       }
@@ -155,7 +158,7 @@ const ApplicationScreen = ({ navigation }) => {
         )
       }
     }
-    else if (settings[item] || item == 'Button') {
+    else if (settings[item] || item == 'Button' || (item == 'GasMode' && settings[item] != 1)) {
       return (
         <View
         style={{
