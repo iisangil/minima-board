@@ -27,8 +27,10 @@ function Gas() {
   // Function to increment gas percent by 1
   const incrementCount = () => {
     // Update state with incremented value
-    setGas(gasLevel + 1);
-    updateGasLevel(gasLevel);
+    if (gasLevel < 100){
+      setGas(gasLevel + 1);
+      updateGasLevel(gasLevel);
+    }
   };
   // Function to decrement gas percent by 1
   const decrementCount = () => {
