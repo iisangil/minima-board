@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { View, Button, Dimensions, Platform } from 'react-native';
+import { View, Button, Dimensions } from 'react-native';
 import { DragSortableView } from 'react-native-drag-sort';
 import Emergency from '../components/Emergency';
 import Gas from '../components/Gas';
@@ -8,7 +8,6 @@ import Seatbelt from '../components/Seatbelt.jsx';
 import TirePressure from '../components/TirePressure';
 import { SettingsContext } from '../context/settingsContext';
 import SpeedDisplay from '../components/Speed';
-import ColorPicker from 'react-native-wheel-color-picker';
 
 const ApplicationScreen = ({ navigation }) => {
   const { settings } = useContext(SettingsContext);
@@ -16,7 +15,7 @@ const ApplicationScreen = ({ navigation }) => {
 
   const components = {
     'Emergency': <Emergency />,
-    'Gas': <Gas />,
+    'GasMode': <Gas />,
     'RPM': <RPM />,
     'Seatbelt': <Seatbelt />,
     'Button': <Button
@@ -28,7 +27,7 @@ const ApplicationScreen = ({ navigation }) => {
 
   const dataArray = [
     'Emergency',
-    'Gas',
+    'GasMode',
     'RPM',
     'Seatbelt',
     'Button',
@@ -38,9 +37,9 @@ const ApplicationScreen = ({ navigation }) => {
   const [ dataState, setData ] = useState(dataArray);
 
   const renderComponent = (item, index) => {
-    console.log(item, settings[item])
+    console.log(item, settings[item]);
     console.log('data state', dataState);
-    if (settings[item] || item == 'Button' || item == 'Speed' || item == 'Gas') {
+    if (settings[item] || item == 'Button' || item == 'Speed' || (item == 'GasMode' && settings[item] != 1)) {
       return (
         <View style={{
           width: width / 3, height: height / 3, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
@@ -50,11 +49,8 @@ const ApplicationScreen = ({ navigation }) => {
       )
     }
   }
-
-
-
+  
   return (
-    
     <View>
       <DragSortableView
       dataSource={dataState}

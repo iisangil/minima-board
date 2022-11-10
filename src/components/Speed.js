@@ -20,8 +20,7 @@ function SpeedDisplay(){
         let watchID = Location.watchPositionAsync(
           { accuracy: 6, timeInterval: 5000, distanceInterval: 0 },
           (position) => {
-            console.log(position);
-            // console.log(position.coords.speed);
+             // console.log(position.coords.speed);
             position.coords.speed < 1 ? setCount(0): setCount(parseInt(position.coords.speed));
           }
         );

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { View, Text, Button, StyleSheet, ImageBackground} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,7 +11,7 @@ import {styles} from '../components/Styles.js';
 export function GasCustomizationScreen({navigation}) {
   let currMode = 1;
   const [selected, setSelected] = React.useState("");
-  // const { settings, setSettings } = useContext(SettingsContext);
+  const { settings, setSettings } = useContext(SettingsContext);
 
   // const components = {
   //   'Emergency': <Emergency />,
@@ -24,17 +25,21 @@ export function GasCustomizationScreen({navigation}) {
   //   'Speed': <SpeedDisplay />,
   // };
 
-  // const selectFeature = (feature) => {
-  //   let newSettings = Object.assign({}, settings);
-  //   newSettings[feature] = !newSettings[feature]; 
-  //   setSettings(newSettings);
-  //   console.log("NEWSETTINGS", newSettings);
+  const selectGasMode = (feature) => {
+    
+    let newSettings = Object.assign({}, settings);
 
-  //   storage.save({
-  //     key: 'settings',
-  //     data: newSettings
-  //   });
-  // } 
+    newSettings["GasMode"] = feature;
+
+    setSettings(newSettings);
+    console.log("NEWSETTINGS", newSettings);
+
+    storage.save({
+      key: 'settings',
+      data: newSettings
+    });
+
+  } 
 
   const data = [{key:'1',value:'Hidden'},
   {key:'2',value:'Alert'},
@@ -43,7 +48,7 @@ export function GasCustomizationScreen({navigation}) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
        {/* <SelectList setSelected={setSelected} data={data} onSelect={() => alert(selected)} /> */}
-       <SelectList setSelected={setSelected} data={data}/>
+       <SelectList setSelected={setSelected} data={data} onSelect={() => selectGasMode(selected)}/>
 
 
         <Button title="Back to Home" onPress={() => navigation.navigate('Home')} />
