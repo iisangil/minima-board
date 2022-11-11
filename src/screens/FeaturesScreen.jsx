@@ -28,6 +28,19 @@ const FeaturesScreen = ({ navigation }) => {
     </View>
   )
 
+  const resetSettings = () => {
+    let newSettings = Object.assign({}, settings);
+    setSettings({});
+
+    storage.save({
+      key: 'settings',
+      data: {}
+    });
+
+    alert("You have reset the app to default settings!");
+    console.log("Reset Settings", newSettings);
+  }
+
   const changeTheme = () => {
     // console.log('settings', settings);
     let newSettings = Object.assign({}, settings);
@@ -218,6 +231,10 @@ const FeaturesScreen = ({ navigation }) => {
               {
                 title: 'Customize Display Layout',
                 renderAccessory: () => <Button title=">" onPress={() => navigation.navigate('Layout')} />
+              }, 
+              {
+                title: 'Reset Layout',
+                renderAccessory: () => <Button title="Reset" onPress={() => resetSettings()} />
               }, 
             ],
           },
