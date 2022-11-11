@@ -51,7 +51,7 @@ function Gas() {
 
   return (settings["GasMode"] == 2 && isLow) ? (
     <View>    
-      <FontAwesome5 name="gas-pump" size={42} color={settings["FontColor"]} onPress={gasInfo}>
+      <FontAwesome5 name="gas-pump" size={42} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} onPress={gasInfo}>
       <Text style={textStyle}> {currentGas}</Text>
       <Text style={subtextStyle}>%</Text>
       </FontAwesome5>
@@ -59,7 +59,7 @@ function Gas() {
 
   ) : (settings["GasMode"] == 3) ?
   (<View>    
-  <FontAwesome5 name="gas-pump" size={42} color={settings['Theme'] == 'Light' ? 'black' : 'white'} onPress={gasInfo}>
+  <FontAwesome5 name="gas-pump" size={42} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} onPress={gasInfo}>
     <Text style={styles.text}> {currentGas}</Text>
     <Text style={styles.subText}>%</Text>
   </FontAwesome5>
@@ -72,16 +72,9 @@ function Gas() {
         onPress={() => decrementCount()}
     />
 
-</View>) : (settings["GasMode"] == 4) ?
-  (<View>  
-      <Button
-        title="Increment"
-        onPress={() => incrementCount()}
-      />
-      <Button
-          title="Decrement"
-          onPress={() => decrementCount()}
-      />    
+</View>
+) : (settings["GasMode"] == 4) ?
+  (<View style={styles.gasContainer}>  
       <RNSpeedometer value={gasLevel} size={100}/>
   </View>) :
   <></>;

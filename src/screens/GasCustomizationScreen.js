@@ -46,9 +46,9 @@ export function GasCustomizationScreen({navigation}) {
   {key:'3',value:'Percentage'},
   {key:'4',value:'Gauge'},];
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',}}>
        {/* <SelectList setSelected={setSelected} data={data} onSelect={() => alert(selected)} /> */}
-       <SelectList setSelected={setSelected} data={data} onSelect={() => selectGasMode(selected)}/>
+       <SelectList setSelected={setSelected} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} data={data} save="value" onSelect={() => selectGasMode(selected)}/>
 
 
         <Button title="Back to Home" onPress={() => navigation.navigate('Home')} />

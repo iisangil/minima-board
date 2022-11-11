@@ -131,7 +131,10 @@ export const styles = StyleSheet.create({
       marginTop: 50,
       alignSelf: 'bottom'
     },
-
+    gasContainer: {
+      marginTop: 10,
+      alignSelf: 'bottom'
+    },
     background:{
       backgroundColor: 'gray',
       marginBottom: 40, 
