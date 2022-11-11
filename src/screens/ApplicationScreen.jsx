@@ -53,7 +53,7 @@ const ApplicationScreen = ({ navigation }) => {
 
     const components = {
     'Emergency': <Emergency />,
-    'Gas': <Gas />,
+    'GasMode': <Gas />,
     'RPM': <RPM />,
     'Seatbelt': <Seatbelt />,
     'Button': <Button
@@ -66,7 +66,7 @@ const ApplicationScreen = ({ navigation }) => {
   
   const dataArray = [
     'Emergency',
-    'Gas',
+    'GasMode',
     'RPM',
     'Seatbelt',
     'Button',
@@ -76,9 +76,11 @@ const ApplicationScreen = ({ navigation }) => {
   ];
 
   const [ dataState, setData ] = useState(settings['layout'] ? settings['layout'] : dataArray);
+
+  console.log("settings render", settings);
   
   const renderComponent = (item, index) => {
-    console.log("settings render", settings);
+    console.log(item);
     if (item == 'Speed') {
       return (
         <View
@@ -100,7 +102,7 @@ const ApplicationScreen = ({ navigation }) => {
           {components[item]}
         </View>
       )
-    }
+    }  
     else if (item == 'contact1' || item == 'contact2') {
       if (!settings['contacts'] || settings['contacts'].length == 0) {
         return;
@@ -156,7 +158,7 @@ const ApplicationScreen = ({ navigation }) => {
         )
       }
     }
-    else if (settings[item] || item == 'Button') {
+    else if (settings[item] || item == 'Button' || (item == 'GasMode' && settings[item] != 1)) {
       return (
         <View
         style={{
@@ -183,6 +185,7 @@ const ApplicationScreen = ({ navigation }) => {
   const refContainer = useRef();
 
   return (
+    
     <View style={{color: settings["FontColor"], backgroundColor: settings["Background"], width: width, height: height }}>
       <AnySizeDragSortableView
       ref={refContainer}

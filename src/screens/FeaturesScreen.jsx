@@ -127,13 +127,19 @@ const FeaturesScreen = ({ navigation }) => {
             footer:
               'Customize which alerts you would like to receive.',
             rows: [
+              // {
+              //   title: "Fuel Options",
+              //   subtitle: 'Alert when gas is running low',
+              //   renderAccessory:() => <Button
+              //       title={gasMode}
+              //       value={settings['Gas']}
+              //       onPress={() => changeGasMode()}
+              //     />
+              // },
               {
-                title: 'Fuel Alert',
-                subtitle: 'Alert when gas is running low',
-                renderAccessory:() => <Switch
-                    value={settings['Gas']}
-                    onChange={() => selectFeature("Gas")}
-                  />
+                title: 'Fuel Display Options',
+                subtitle: 'Different modes of display for the fuel',
+                renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('GasMode')} />
               },
               {
                 title: 'RPM Alert',
@@ -151,14 +157,6 @@ const FeaturesScreen = ({ navigation }) => {
                     onChange={() => selectFeature("Seatbelt")}
                   />,
               }
-              // {
-              //   title: 'Text',
-              //   renderAccessory: () => (
-              //     <Text style={{ color: '#999', marginRight: 6, fontSize: 18 }}>
-              //       Maybe
-              //     </Text>
-              //   ),
-              // },
               
             ],
           },

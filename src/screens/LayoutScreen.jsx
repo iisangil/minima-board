@@ -52,7 +52,7 @@ const LayoutScreen = ({ navigation }) => {
 
     const components = {
       'Emergency': <Emergency />,
-      'Gas': <Gas />,
+      'GasMode': <Gas />,
       'RPM': <RPM />,
       'Seatbelt': <Seatbelt />,
       'Button': <Button
@@ -64,7 +64,7 @@ const LayoutScreen = ({ navigation }) => {
   
     const dataArray = [
       'Emergency',
-      'Gas',
+      'GasMode',
       'RPM',
       'Seatbelt',
       'Button',

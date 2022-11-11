@@ -15,6 +15,8 @@ import { DefaultDisplayScreen } from './src/screens/DefaultDisplayScreen.js';
 import ApplicationScreen from './src/screens/ApplicationScreen';
 import FeaturesScreen from './src/screens/FeaturesScreen';
 import DeveloperScreen from './src/screens/DeveloperScreen';
+import GasCustomizationScreen from './src/screens/GasCustomizationScreen';
+
 import { ColorCustomizationScreen } from './src/screens/ColorCustomizationScreen';
 import { FontCustomizationScreen } from './src/screens/FontCustomizationScreen';
 import ContactsScreen from './src/screens/ContactsScreen';
@@ -90,6 +92,7 @@ function App() {
           <Stack.Screen name="DefaultDisplay" component={DefaultDisplayScreen} />
           <Stack.Screen name="Application" component={ApplicationScreen} />
           <Stack.Screen name="Developer" component={DeveloperScreen} />
+          <Stack.Screen name="GasMode" component={GasCustomizationScreen} />
           <Stack.Screen name = "ColorCustomization" component={ColorCustomizationScreen}/>
           <Stack.Screen name = "PresetThemes" component={PresetThemeScreen}/>
           <Stack.Screen name = "FontCustomization" component={FontCustomizationScreen}/>
