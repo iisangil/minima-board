@@ -7,6 +7,7 @@ import { styles } from '../components/Styles';
 
 const ContactsScreen = (navigation) => {
   const [contactInfo, setContacts] = useState([]);
+  const [search, setSearch] = useState('');
 
   const { settings, setSettings } = useContext(SettingsContext);
 
@@ -76,7 +77,8 @@ const ContactsScreen = (navigation) => {
   }
 
   const createRows = () => {
-    let rows = contactInfo.map((contact) => {
+    let filteredContacts = contactInfo.filter(contact => contact.name.toUpperCase().includes(search.toUpperCase()));
+    let rows = filteredContacts.map((contact) => {
       let disabled = !contact.phoneNumbers || contact.phoneNumbers.length == 0;
       console.log("CHECKING ABILITY", contact);
       return {
