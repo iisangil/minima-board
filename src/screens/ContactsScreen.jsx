@@ -94,10 +94,13 @@ const ContactsScreen = (navigation) => {
         key: contact.id
       }
     });
+    rows.sort((a, b) => {
+      return a.title > b.title;
+    });
     return rows;
   }
 
-  return contactInfo.length != 0 ? <ContactsSelection contactInfo={createRows()} /> : <Text>this sucks</Text>
+  return contactInfo.length != 0 ? <ContactsSelection contactInfo={createRows()} /> : <Text>Loading Contacts</Text>
 
 }
 
