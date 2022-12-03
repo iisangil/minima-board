@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { View, Text, StatusBar, Switch } from 'react-native';
+import { View, Text, StatusBar, Switch, ActivityIndicator, StyleSheet } from 'react-native';
 import { SettingsContext, storage } from '../context/settingsContext';
 import * as Contacts from 'expo-contacts';
 import { SettingsScreen } from 'react-native-settings-screen';
@@ -100,8 +100,23 @@ const ContactsScreen = (navigation) => {
     return rows;
   }
 
-  return contactInfo.length != 0 ? <ContactsSelection contactInfo={createRows()} /> : <Text>Loading Contacts</Text>
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: 'center',
+      flexDirection: "column",
+    }
+  });
 
+  return contactInfo.length != 0 ? (
+    <ContactsSelection contactInfo={createRows()} />
+  ) : (
+    <View style={[styles.container]}>
+      <ActivityIndicator size='large' style={{ padding: '5%' }}/>
+      <Text>Loading Contacts...</Text>
+    </View>
+  )
 }
 
 export default ContactsScreen;
