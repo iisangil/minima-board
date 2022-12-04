@@ -161,26 +161,30 @@ const ApplicationScreen = ({ navigation }) => {
     else if (item == 'GasMode') {
       console.log("GASMODE", item, settings[item], components[item]);
       console.log("TEST", settings[item] != 1);
-      settings[item] != 1 ? (
-        <View
-        style={{
-        width: (width < height ? width / 3 : width / 5.5),
-        height: width < height ? height / 5.5 : height / 3,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: 'solid',
-        borderWidth: '1px',
-        borderRadius: '35',
-        marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
-        marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
-        marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-        marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
-        }}>
-          {components[item]}
-        </View>
-      ) : '';
+      if (settings[item] != null && settings[item] != 1) {
+        console.log('here');
+        return (
+          <View
+          style={{
+          width: (width < height ? width / 3 : width / 5.5),
+          height: width < height ? height / 5.5 : height / 3,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: 'solid',
+          borderWidth: '1px',
+          borderRadius: '35',
+          marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+          marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          }}>
+            <Gas />
+          </View>
+        )
+      }
+      return;
     } 
     else if (settings[item] || item == 'Button') {
       console.log("ITEM", item, settings[item]);

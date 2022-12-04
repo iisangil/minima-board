@@ -20,6 +20,7 @@ export const updateGasLevel = (gasLevel) => {
 
 function Gas() {
   const { settings } = useContext(SettingsContext);
+  console.log("GAS SETTINGS", settings);
 
   // State to store gas value
   const [gasLevel, setGas] = useState(100);
@@ -49,7 +50,7 @@ function Gas() {
   let subtextStyle = Object.assign({}, styles.subText);
   subtextStyle['color'] = settings["FontColor"];
 
-  return (settings["GasMode"] == 2 && isLow) ? (
+  return (settings["GasMode"] == 2) ? (
     <View>    
       <FontAwesome5 name="gas-pump" size={42} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} onPress={gasInfo}>
       <Text style={textStyle}> {currentGas}</Text>
