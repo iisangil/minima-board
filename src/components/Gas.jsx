@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, Button} from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { SettingsContext } from '../context/settingsContext';
 import { styles } from '../components/Styles';
 import RNSpeedometer from 'react-native-speedometer'
@@ -51,13 +51,21 @@ function Gas() {
   subtextStyle['color'] = settings["FontColor"];
 
   return (settings["GasMode"] == 2) ? (
-    <View>    
-      <FontAwesome5 name="gas-pump" size={42} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} onPress={gasInfo}>
-      <Text style={textStyle}> {currentGas}</Text>
-      <Text style={subtextStyle}>%</Text>
-      </FontAwesome5>
-    </View>
-
+    isLow ? (
+      <View>    
+        <MaterialCommunityIcons name={'gas-station-off'} size={42} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} onPress={gasInfo}>
+        <Text style={textStyle}> {currentGas}</Text>
+        <Text style={subtextStyle}>%</Text>
+        </MaterialCommunityIcons>
+      </View>    
+    ) : (
+        <View>    
+          <FontAwesome5 name={"gas-pump"} size={42} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} onPress={gasInfo}>
+          <Text style={textStyle}> {currentGas}</Text>
+          <Text style={subtextStyle}>%</Text>
+          </FontAwesome5>
+        </View>
+    )
   ) : (settings["GasMode"] == 3) ?
   (<View>    
   <FontAwesome5 name="gas-pump" size={42} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} onPress={gasInfo}>
