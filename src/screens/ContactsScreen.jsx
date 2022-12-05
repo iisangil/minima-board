@@ -1,12 +1,14 @@
 import { useEffect, useState, useContext } from 'react';
-import { View, Text, StatusBar, Switch } from 'react-native';
+import { View, Text, StatusBar, Switch, ActivityIndicator, StyleSheet } from 'react-native';
 import { SettingsContext, storage } from '../context/settingsContext';
 import * as Contacts from 'expo-contacts';
 import { SettingsScreen } from 'react-native-settings-screen';
+import { SearchBar } from 'react-native-ios-kit';
 import { styles } from '../components/Styles';
 
 const ContactsScreen = (navigation) => {
   const [contactInfo, setContacts] = useState([]);
+  const [search, setSearch] = useState('');
 
   const { settings, setSettings } = useContext(SettingsContext);
 
@@ -19,7 +21,6 @@ const ContactsScreen = (navigation) => {
         });
 
         if (data.length > 0) {
-          // console.log('DATA', data);
           setContacts(data);
         }
       }
@@ -27,7 +28,6 @@ const ContactsScreen = (navigation) => {
   }, []);
 
   const selectContact = (contact) => {
-    console.log("SELECTING", contact, settings);
     let contactName = contact.name;
     let phoneNumber = contact.phoneNumbers[0].number;
     let contactId = contact.id;
@@ -37,7 +37,6 @@ const ContactsScreen = (navigation) => {
       selectedContacts = [contactId];
     } 
     else if (settings['contacts'].includes(contactId)) {
-      console.log('here');
       selectedContacts = [...settings['contacts']];
       selectedContacts.splice(settings['contacts'].indexOf(contactId), 1);
     }
@@ -63,7 +62,6 @@ const ContactsScreen = (navigation) => {
     }
 
     setSettings(newSettings);
-    console.log('new settings', newSettings);
   
     storage.save({
       key: 'settings',
@@ -76,9 +74,9 @@ const ContactsScreen = (navigation) => {
   }
 
   const createRows = () => {
-    let rows = contactInfo.map((contact) => {
+    let filteredContacts = contactInfo.filter(contact => contact.name.toUpperCase().includes(search.toUpperCase()));
+    let rows = filteredContacts.map((contact) => {
       let disabled = !contact.phoneNumbers || contact.phoneNumbers.length == 0;
-      console.log("CHECKING ABILITY", contact);
       return {
         title: contact.name,
         renderAccessory: () => (
@@ -94,17 +92,41 @@ const ContactsScreen = (navigation) => {
         key: contact.id
       }
     });
+    rows.sort((a, b) => {
+      return a.title > b.title;
+    });
     return rows;
   }
 
-  return contactInfo.length != 0 ? <ContactsSelection contactInfo={createRows()} /> : <Text>this sucks</Text>
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: 'center',
+      flexDirection: "column",
+    }
+  });
 
+  let props = {
+    contactInfo: createRows(),
+    search: search,
+    setSearch: setSearch,
+  }
+
+  return contactInfo.length != 0 ? (
+    <ContactsSelection {...props} />
+  ) : (
+    <View style={[styles.container]}>
+      <ActivityIndicator size='large' style={{ padding: '5%' }}/>
+      <Text>Loading Contacts...</Text>
+    </View>
+  )
 }
 
 export default ContactsScreen;
 
-const ContactsSelection = (contactInfo) => {
-  // const { settings, setSettings } = useContext(SettingsContext);
+const ContactsSelection = (props) => {
+  const { contactInfo, search, setSearch } = props;
 
   const renderHero = () => (
     <View style={styles.heroContainer}>
@@ -116,7 +138,12 @@ const ContactsSelection = (contactInfo) => {
 
   return (
     <View style={styles.container}>
-      {/* {console.log('CONTACT INFO', contactInfo)} */}
+      <SearchBar
+      value={search}
+      onValueChange={text => setSearch(text)}
+      withCancel
+      animated
+      />
       <StatusBar barStyle='light-content' backgroundColor='#8c231a' />
 
       <SettingsScreen
@@ -126,7 +153,7 @@ const ContactsSelection = (contactInfo) => {
         {
           type: 'SECTION',
           header: '',
-          rows: contactInfo.contactInfo,
+          rows: contactInfo,
         },
       ]}
       globalTextStyle='Avenir'
