@@ -52,35 +52,35 @@ const ApplicationScreen = ({ navigation }) => {
     }, []);
 
     const components = {
+    'Speed': <SpeedDisplay />,
     'Emergency': <Emergency />,
     'GasMode': <Gas />,
     'RPM': <RPM />,
     'Seatbelt': <Seatbelt />,
     'Button': <Button
-    title="Back to Home"
+              title="Back to Home"
               onPress={() => navigation.navigate("Home")}
               color={settings["FontColor"]}
               />,
-    'Speed': <SpeedDisplay />,
   };
   
   const dataArray = [
+    'Speed',
     'Emergency',
     'GasMode',
     'RPM',
     'Seatbelt',
     'Button',
-    'Speed',
     'contact1',
     'contact2',
   ];
 
   const [ dataState, setData ] = useState(settings['layout'] ? settings['layout'] : dataArray);
-
+  console.log("DATASTATE", dataState);
   console.log("settings render", settings);
   
   const renderComponent = (item, index) => {
-    console.log(item);
+    console.log('iTEM', item);
     if (item == 'Speed') {
       return (
         <View
@@ -158,7 +158,36 @@ const ApplicationScreen = ({ navigation }) => {
         )
       }
     }
-    else if (settings[item] || item == 'Button' || (item == 'GasMode' && settings[item] != 1)) {
+    else if (item == 'GasMode') {
+      console.log("GASMODE", item, settings[item], components[item]);
+      console.log("TEST", settings[item] != 1);
+      if (settings[item] != null && settings[item] != 1) {
+        console.log('here');
+        return (
+          <View
+          style={{
+          width: (width < height ? width / 3 : width / 5.5),
+          height: width < height ? height / 5.5 : height / 3,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: 'solid',
+          borderWidth: '1px',
+          borderRadius: '35',
+          marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+          marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          }}>
+            <Gas />
+          </View>
+        )
+      }
+      return;
+    } 
+    else if (settings[item] || item == 'Button') {
+      console.log("ITEM", item, settings[item]);
       return (
         <View
         style={{

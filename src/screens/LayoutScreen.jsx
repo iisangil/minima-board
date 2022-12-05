@@ -51,6 +51,7 @@ const LayoutScreen = ({ navigation }) => {
     }, []);
 
     const components = {
+      'Speed': <SpeedDisplay />,
       'Emergency': <Emergency />,
       'GasMode': <Gas />,
       'RPM': <RPM />,
@@ -58,17 +59,17 @@ const LayoutScreen = ({ navigation }) => {
       'Button': <Button
                 title="Back to Home"
                 onPress={() => navigation.navigate("Home")}
+                color={settings['FontColor']}
                 />,
-      'Speed': <SpeedDisplay />,
     };
   
     const dataArray = [
+      'Speed',
       'Emergency',
       'GasMode',
       'RPM',
       'Seatbelt',
       'Button',
-      'Speed',
       'contact1',
       'contact2',
     ];
@@ -157,6 +158,32 @@ const LayoutScreen = ({ navigation }) => {
               <View>
                 <Contact contact={{ contactName, phoneNumber }} />
               </View>
+            </TouchableOpacity>
+          )
+        }
+      }
+      else if (item == 'GasMode') {
+        if (settings[item] != null && settings[item] != 1) {
+          return (
+            <TouchableOpacity
+            onLongPress={() => refContainer.current.startTouch(item, index)}
+            onPressOut={() => refContainer.current.onPressOut()}
+            style={{
+            width: (width < height ? width / 3 : width / 5.5),
+            height: width < height ? height / 5.5 : height / 3,
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: 'solid',
+            borderWidth: '1px',
+            borderRadius: '35',
+            marginLeft: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+            marginRight: (width < height ? 0.08333333333 * width : 0.03409090909 * width / 2),
+            marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+            marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+            }}>
+              {components[item]}
             </TouchableOpacity>
           )
         }
