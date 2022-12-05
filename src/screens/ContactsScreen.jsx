@@ -74,7 +74,18 @@ const ContactsScreen = (navigation) => {
   }
 
   const createRows = () => {
-    let filteredContacts = contactInfo.filter(contact => contact.name.toUpperCase().includes(search.toUpperCase()));
+    let filteredContacts = contactInfo.filter(contact => {
+      console.log("CONTACT", contact);
+      if (contact.name) {
+        return contact.name.toUpperCase().includes(search.toUpperCase());
+      }
+      else if (contact.firstName) {
+        return contact.firstName.toUpperCase().includes(search.toUpperCase());
+      }
+      else if (contact.lastName) {
+        return contact.lastName.toUpperCase().includes(search.toUpperCase());
+      }
+    });
     let rows = filteredContacts.map((contact) => {
       let disabled = !contact.phoneNumbers || contact.phoneNumbers.length == 0;
       return {
