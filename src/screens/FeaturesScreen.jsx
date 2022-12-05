@@ -92,6 +92,8 @@ const FeaturesScreen = ({ navigation }) => {
     newSettings["speedThreshold"] = speed
     setSettings(newSettings);
   
+    console.log("NEW SETTINGS", newSettings);
+    
     storage.save({
       key: 'settings',
       data: newSettings

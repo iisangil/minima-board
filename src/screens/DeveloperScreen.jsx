@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
-import { SettingsContext } from '../context/settingsContext';
+import { SettingsContext, storage } from '../context/settingsContext';
 import { updateTirePressure } from '../components/TirePressure';
-import { updateGasLevel } from '../components/Gas';
+import { updateGasLevel, isLow } from '../components/Gas';
 import { updateRPM } from '../components/RPM';
 import { updateSeatbelt } from '../components/Seatbelt';
 
@@ -17,6 +17,18 @@ const DeveloperScreen = ({ navigation }) => {
   }
   const handleGasLevel = (gas) => {
     updateGasLevel(gas)
+
+    let newSettings = Object.assign({}, settings);
+    newSettings['gasLow'] = isLow;
+  
+    setSettings(newSettings);
+
+    storage.save({
+      key: 'settings',
+      data: newSettings,
+    })
+
+    console.log("NEW SETTINGS DEV", newSettings);
   }
   const handleRPM = (rpm) => {
     updateRPM(rpm)
