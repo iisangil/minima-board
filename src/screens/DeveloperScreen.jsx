@@ -3,7 +3,7 @@ import { View, Text, Button, TextInput } from 'react-native';
 import { SettingsContext, storage } from '../context/settingsContext';
 import { updateTirePressure } from '../components/TirePressure';
 import { updateGasLevel, isLow } from '../components/Gas';
-import { updateRPM } from '../components/RPM';
+import { updateRPM, isHigh } from '../components/RPM';
 import { updateSeatbelt } from '../components/Seatbelt';
 
 import { styles } from '../components/Styles';
@@ -32,6 +32,16 @@ const DeveloperScreen = ({ navigation }) => {
   }
   const handleRPM = (rpm) => {
     updateRPM(rpm)
+
+    let newSettings = Object.assign({}, settings);
+    newSettings['rpmHigh'] = isHigh;
+
+    setSettings(newSettings);
+
+    storage.save({
+      key: 'settings',
+      data: newSettings,
+    });
   }
   const handleSeatbelt = (isOn) => {
     console.log("Seatbelt on: ", isSeatbeltOn)

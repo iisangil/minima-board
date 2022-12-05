@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { SettingsContext } from '../context/settingsContext';
 import { styles } from '../components/Styles';
 
-var isHigh = false;
+export var isHigh = false;
 // If the current RPM is above this threshold then an alert should be set
 // Default 2000
 var rpmThreshold = 2000
@@ -21,7 +21,7 @@ export const changeRPMThreshold = (threshold) => {
 }
 
 const RPM = () => {
-  const { settings } = useContext(SettingsContext);
+  const { settings, setSettings } = useContext(SettingsContext);
   rpmThreshold = settings["RPMThreshold"] ?? 2000
 
   const rpmInfo = () => {
