@@ -20,8 +20,6 @@ export const updateGasLevel = (gasLevel) => {
 
 function Gas() {
   const { settings } = useContext(SettingsContext);
-  console.log("GAS SETTINGS", settings);
-
   // State to store gas value
   const [gasLevel, setGas] = useState(100);
 
