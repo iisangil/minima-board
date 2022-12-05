@@ -114,12 +114,16 @@ export const styles = StyleSheet.create({
       fontFamily,
       color: 'black',
       fontSize: 24,
-      marginHorizontal: 24
+      marginHorizontal: 15,
     },
     heroSubtitle: {
       fontFamily,
       color: '#999',
       fontSize: 14,
+    },
+    heroButton:{
+      flex: 1,
+      marginHorizontal: 24,
     },
     homeScreen:{
       flex: 1,
