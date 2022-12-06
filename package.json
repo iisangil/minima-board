@@ -32,6 +32,7 @@
     "react-native-color-picker": "^0.6.0",
     "react-native-color-picker-ios": "^0.1.2",
     "react-native-color-wheel": "^0.1.7",
+    "react-native-dialog-input": "^1.0.8",
     "react-native-drag-sort": "^2.4.4",
     "react-native-dropdown-select-list": "^1.0.23",
     "react-native-gauge": "^0.1.2",

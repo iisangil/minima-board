@@ -1,6 +1,5 @@
 import * as React from 'react';
-import * as reactNative from 'react-native';
-import {View} from 'react-native';
+import { View, Button } from 'react-native';
 import { 
   DefaultTheme,
   DarkTheme,
@@ -8,6 +7,7 @@ import {
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as ScreenOrientation from 'expo-screen-orientation'
+import DialogInput from 'react-native-dialog-input';
 
 import { HomeScreen } from './src/screens/HomeScreen';
 import { BaseDisplayScreen } from './src/screens/BaseDisplayScreen.js';
@@ -49,6 +49,8 @@ function App() {
   const [settings, setSettings] = React.useState({"Theme": "Light"})
   const settingsData = { settings, setSettings };
 
+  const [show, setShow] = React.useState(false);
+
   React.useEffect(() => {
     const lockScreen = async () => {
       await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
@@ -81,6 +83,34 @@ function App() {
     },
   };
 
+  const saveDisplay = (name) => {
+    console.log("top level settings", settings);
+
+    let newSettings = Object.assign({}, settings);
+    let savedSettings = Object.assign({}, settings);
+
+    if (!newSettings['savedSettings']) {
+      newSettings['savedSettings'] = {};
+    }
+    if (newSettings['savedSettings'].hasOwnProperty(name)) {
+      setShow(false);
+      alert('Name is being used. Try again');
+      setShow(true);
+      return;
+    }
+    else {
+      setShow(false);
+      newSettings['savedSettings'][name] = savedSettings;
+      setSettings(newSettings);
+      console.log('settings after save', newSettings);
+
+      storage.save({
+        key: 'settings',
+        data: newSettings,
+      });
+
+    }
+  }
 
   return (
       <SettingsContext.Provider value={settingsData} >
@@ -98,7 +128,33 @@ function App() {
           <Stack.Screen name = "PresetThemes" component={PresetThemeScreen}/>
           <Stack.Screen name = "FontCustomization" component={FontCustomizationScreen}/>
           <Stack.Screen name='Contacts' component={ContactsScreen} />
-          <Stack.Screen name='Layout' component={LayoutScreen} />
+          <Stack.Screen name='Layout' component={LayoutScreen}
+          options={{
+            headerRight: () => (
+              <View>
+                <DialogInput
+                isDialogVisible={show}
+                title={"Save Layout"}
+                message={"Please enter a name for this layout"}
+                hintInput ={"Layout Name"}
+                submitInput={ (inputText) => {
+                  console.log(inputText);
+                  
+                  saveDisplay(inputText);
+                }}
+                closeDialog={() => setShow(false)}
+                >
+                </DialogInput>
+                <Button
+                onPress={() => {
+                  console.log(show);
+                  setShow(true);
+                }}
+                title='Save'
+                />
+              </View>
+            ),
+          }} />
           <Stack.Screen name = 'Help' component={HelpScreen}/>
         </Stack.Navigator>
       </NavigationContainer>

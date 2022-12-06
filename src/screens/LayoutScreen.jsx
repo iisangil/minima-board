@@ -8,7 +8,7 @@ import Seatbelt from '../components/Seatbelt.jsx';
 import TirePressure from '../components/TirePressure';
 import SpeedDisplay from '../components/Speed';
 import * as ScreenOrientation from 'expo-screen-orientation';
-import { DragSortableView, AnySizeDragSortableView } from 'react-native-drag-sort';
+import { AnySizeDragSortableView } from 'react-native-drag-sort';
 
 const LayoutScreen = ({ navigation }) => {
   const { settings, setSettings } = useContext(SettingsContext);
