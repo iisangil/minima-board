@@ -21,6 +21,7 @@ import { ColorCustomizationScreen } from './src/screens/ColorCustomizationScreen
 import { FontCustomizationScreen } from './src/screens/FontCustomizationScreen';
 import ContactsScreen from './src/screens/ContactsScreen';
 import { PresetThemeScreen } from './src/screens/PresetThemeScreen';
+import { CustomThemeScreen } from './src/screens/CustomThemeScreen'
 
 import { SettingsContext, storage } from './src/context/settingsContext';
 
@@ -96,6 +97,7 @@ function App() {
           <Stack.Screen name = "ColorCustomization" component={ColorCustomizationScreen}/>
           <Stack.Screen name = "PresetThemes" component={PresetThemeScreen}/>
           <Stack.Screen name = "FontCustomization" component={FontCustomizationScreen}/>
+          <Stack.Screen name = "CustomThemes" component={CustomThemeScreen}/>
           <Stack.Screen name='Contacts' component={ContactsScreen} />
           <Stack.Screen name='Layout' component={LayoutScreen} />
         </Stack.Navigator>
