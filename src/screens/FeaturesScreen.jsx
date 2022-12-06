@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { View, Switch, Text, Button, SectionList, SafeAreaView, StatusBar, Platform, RefreshControl, TextInput } from 'react-native';
 import { SettingsContext, storage } from '../context/settingsContext';
-
+  
 import { styles } from '../components/Styles';
 import Icon from 'react-native-vector-icons/Entypo'
 import PickerComponent from '../components/ColorPicker';
