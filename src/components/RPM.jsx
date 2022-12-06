@@ -20,7 +20,7 @@ export const changeRPMThreshold = (threshold) => {
   isHigh = currentRPM > rpmThreshold
 }
 
-const RPM = () => {
+const RPM = (show) => {
   const { settings, setSettings } = useContext(SettingsContext);
 
   rpmThreshold = settings["RPMThreshold"] ?? 2000;
@@ -54,7 +54,7 @@ const RPM = () => {
   let subtextStyle = Object.assign({}, styles.subText);
   subtextStyle['color'] = settings["FontColor"];
 
-  return isHigh ? (
+  return isHigh || show ? (
     <View>    
       <FontAwesome name="tachometer" size={42} color={settings["FontColor"]} onPress={rpmInfo}>
         <Text style={textStyle}> {currentRPM}</Text>
