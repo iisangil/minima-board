@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect, useRef } from 'react';
 import { View, Button, Dimensions, Text } from 'react-native';
-import { AnySizeDragSortableView, DragSortableView } from 'react-native-drag-sort';
+import { AnySizeDragSortableView } from 'react-native-drag-sort';
 import { Emergency, Contact } from '../components/Calling';
 import Gas from '../components/Gas';
 import RPM from '../components/RPM';
@@ -8,7 +8,6 @@ import Seatbelt from '../components/Seatbelt.jsx';
 import TirePressure from '../components/TirePressure';
 import { SettingsContext } from '../context/settingsContext';
 import SpeedDisplay from '../components/Speed';
-import ColorPicker from 'react-native-wheel-color-picker';
 import { styles } from '../components/Styles';
 import * as ScreenOrientation from 'expo-screen-orientation';
 
@@ -82,26 +81,7 @@ const ApplicationScreen = ({ navigation }) => {
   const renderComponent = (item, index) => {
     console.log('iTEM', item);
     if (item == 'Speed') {
-      return (
-        <View
-        style={{
-        width: (width < height ? width / 2.25 : width / 5.5) * 2,
-        height: (width < height ? width / 2.5 : width / 5.5) * 2,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: 'solid',
-        borderWidth: '1px',
-        borderRadius: '35',
-        marginLeft: (width < height ? 0.02777777777 * width : 0.03409090909 * width / 2) * 2,
-        marginRight: (width < height ? 0.02777777777 * width : 0.03409090909 * width / 2) * 2,
-        marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-        marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
-        }}>
-          {components[item]}
-        </View>
-      )
+      return;
     }  
     else if (item == 'contact1' || item == 'contact2') {
       if (!settings['contacts'] || settings['contacts'].length == 0) {
@@ -114,8 +94,8 @@ const ApplicationScreen = ({ navigation }) => {
         return (
           <View
           style={{
-            width: width < height ? width / 3.5 : width / 5.5,
-            height: width < height ? width / 3.5 : height / 3,
+            width: width < height ? width / 3.5 : height / 4,
+            height: width < height ? width / 3.5 : height / 4,
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
@@ -123,10 +103,10 @@ const ApplicationScreen = ({ navigation }) => {
             border: 'solid',
             borderWidth: '1px',
             borderRadius: '35',
-            marginLeft: width < height ? 0.0238095238 * width : 0.03409090909 * width / 2,
-            marginRight: width < height ? 0.0238095238 * width : 0.03409090909 * width / 2,
-            marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-            marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+            marginLeft: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+            marginRight: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+            marginTop: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
+            marginBottom: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
           }}>
             <Contact contact={{ contactName, phoneNumber }} />
           </View>
@@ -139,8 +119,8 @@ const ApplicationScreen = ({ navigation }) => {
         return (
           <View
           style={{
-            width: width < height ? width / 3.5 : width / 5.5,
-            height: width < height ? width / 3.5 : height / 3,
+            width: width < height ? width / 3.5 : height / 4,
+            height: width < height ? width / 3.5 : height / 4,
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
@@ -148,10 +128,10 @@ const ApplicationScreen = ({ navigation }) => {
             border: 'solid',
             borderWidth: '1px',
             borderRadius: '35',
-            marginLeft: width < height ? 0.0238095238 * width : 0.03409090909 * width / 2,
-            marginRight: width < height ? 0.0238095238 * width : 0.03409090909 * width / 2,
-            marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-            marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+            marginLeft: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+            marginRight: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+            marginTop: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
+            marginBottom: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
           }}>
             <Contact contact={{ contactName, phoneNumber }} />
           </View>
@@ -165,8 +145,8 @@ const ApplicationScreen = ({ navigation }) => {
         return settings['gasLow'] ? (
           <View
           style={{
-          width: (width < height ? width / 3.5 : width / 5.5),
-          height: width < height ? width / 3.5 : height / 3,
+          width: width < height ? width / 3.5 : height / 4,
+          height: width < height ? width / 3.5 : height / 4,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
@@ -174,26 +154,26 @@ const ApplicationScreen = ({ navigation }) => {
           border: 'solid',
           borderWidth: '1px',
           borderRadius: '35',
-          marginLeft: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-          marginRight: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          marginLeft: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+          marginRight: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+          marginTop: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
+          marginBottom: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
           }}>
             <Gas />
           </View>
         ) : (
           <View
           style={{
-          width: (width < height ? width / 3.5 : width / 5.5),
-          height: width < height ? width / 3.5 : height / 3,
+          width: width < height ? width / 3.5 : height / 4,
+          height: width < height ? width / 3.5 : height / 4,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
-          marginLeft: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-          marginRight: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          marginLeft: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+          marginRight: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+          marginTop: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
+          marginBottom: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
           }}>
           </View>
         )
@@ -205,8 +185,8 @@ const ApplicationScreen = ({ navigation }) => {
         return settings['rpmHigh'] ? (
           <View
           style={{
-          width: (width < height ? width / 3.5 : width / 5.5),
-          height: width < height ? width / 3.5 : height / 3,
+          width: width < height ? width / 3.5 : height / 4,
+          height: width < height ? width / 3.5 : height / 4,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
@@ -214,26 +194,26 @@ const ApplicationScreen = ({ navigation }) => {
           border: 'solid',
           borderWidth: '1px',
           borderRadius: '35',
-          marginLeft: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-          marginRight: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          marginLeft: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+          marginRight: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+          marginTop: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
+          marginBottom: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
           }}>
             <RPM />
           </View>
         ) : (
           <View
           style={{
-          width: (width < height ? width / 3.5 : width / 5.5),
-          height: width < height ? width / 3.5 : height / 3,
+          width: width < height ? width / 3.5 : height / 4,
+          height: width < height ? width / 3.5 : height / 4,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
-          marginLeft: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-          marginRight: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          marginLeft: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+          marginRight: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+          marginTop: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
+          marginBottom: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
           }}>
           </View>
         )
@@ -245,8 +225,8 @@ const ApplicationScreen = ({ navigation }) => {
       return (
         <View
         style={{
-        width: (width < height ? width / 3.5 : width / 5.5),
-        height: width < height ? width / 3.5 : height / 3,
+        width: width < height ? width / 3.5 : height / 4,
+        height: width < height ? width / 3.5 : height / 4,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -254,10 +234,10 @@ const ApplicationScreen = ({ navigation }) => {
         border: 'solid',
         borderWidth: '1px',
         borderRadius: '35',
-        marginLeft: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-        marginRight: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
-        marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
-        marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+        marginLeft: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+        marginRight: width < height ? 0.0238095238 * width : 0.0238095238 * height * 2,
+        marginTop: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
+        marginBottom: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
         }}>
           {components[item]}
         </View>
@@ -266,10 +246,35 @@ const ApplicationScreen = ({ navigation }) => {
   }
 
   const refContainer = useRef();
-
+  console.log("ORIENTATION", orientation);
   return (
     
-    <View style={{color: settings["FontColor"], backgroundColor: settings["Background"], width: width, height: height }}>
+    <View style={{
+    color: settings["FontColor"],
+    backgroundColor: settings["Background"],
+    width: width,
+    height: height,
+    flex: '1',
+    flexDirection: orientation && orientation != 1 ? 'row' : 'column',
+    }}>
+      <View
+      style={{
+      width: (width < height ? width / 2.25 : width / 5) * 2,
+      height: (width < height ? width / 2.5 : height / 2.3) * 2,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: 'solid',
+      borderWidth: '1px',
+      borderRadius: '35',
+      marginLeft: (width < height ? 0.02777777777 * width : 0.05 * width / 2) * 2,
+      marginRight: (width < height ? 0.02777777777 * width : 0.01 * width / 2) * 2,
+      marginTop: width < height ? 0.03409090909 * height / 2 : 0.02608695652 * height,
+      marginBottom: width < height ? 0.03409090909 * height / 2 : 0.03260869565 * height
+      }}>
+        <SpeedDisplay />
+      </View>
       <AnySizeDragSortableView
       ref={refContainer}
       dataSource={dataState}
