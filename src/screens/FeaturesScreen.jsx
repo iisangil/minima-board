@@ -241,7 +241,7 @@ const FeaturesScreen = ({ navigation }) => {
                 renderAccessory: () => <Button title=">" onPress={() => navigation.navigate('Layout')} />
               }, 
               {
-                title: 'Reset Layout',
+                title: 'Reset All Settings',
                 renderAccessory: () => <Button title="Reset" onPress={() => resetSettings()} />
               }, 
             ],

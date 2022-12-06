@@ -34,7 +34,7 @@ export function HomeScreen({ navigation }) {
           />
           <Button 
           title="Tutorial"
-          onPress={() => navigation.navigate("Application")}
+          onPress={() => navigation.navigate("Help")}
           />
           
         </View>
@@ -50,9 +50,7 @@ export function HomeScreen({ navigation }) {
         </View>
 
         
-
-        
-        
+    
       </ImageBackground>
       
     </View>
