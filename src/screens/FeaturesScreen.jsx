@@ -79,7 +79,7 @@ const FeaturesScreen = ({ navigation }) => {
 
   const handleRPM = (RPM) => {
     changeRPMThreshold(RPM)
-    rpmThreshold = settings["RPMThreshold"]
+    rpmThreshold = settings["RPMThreshold"] ?? 2000;
 
     let newSettings = Object.assign({}, settings);
     newSettings["RPMThreshold"] = RPM
@@ -100,6 +100,8 @@ const FeaturesScreen = ({ navigation }) => {
     newSettings["speedThreshold"] = speed
     setSettings(newSettings);
   
+    console.log("NEW SETTINGS", newSettings);
+    
     storage.save({
       key: 'settings',
       data: newSettings
