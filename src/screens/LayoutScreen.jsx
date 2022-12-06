@@ -226,7 +226,14 @@ const LayoutScreen = ({ navigation }) => {
   const refContainer = useRef();
     return (
       
-      <View style={{ backgroundColor: settings["Background"], width: width, height: height }}>
+      <View style={{
+      color: settings["FontColor"],
+      backgroundColor: settings["Background"],
+      width: width,
+      height: height,
+      flex: '1',
+      flexDirection: orientation && orientation != 1 ? 'row' : 'column',
+      }}>
         <View
         style={{
         width: (width < height ? width / 2.25 : width / 5) * 2,
