@@ -47,7 +47,13 @@ export const styles = StyleSheet.create({
     button:{
       alignSelf: 'center',
       position: 'absolute',
-      bottom: 35
+      bottom: 35,
+      
+    },
+    button2:{
+      alignSelf: 'center',
+      paddingTop: 420,
+
     },
     bottomscreen:{
       lignSelf: 'center',
@@ -114,16 +120,20 @@ export const styles = StyleSheet.create({
       fontFamily,
       color: 'black',
       fontSize: 24,
-      marginHorizontal: 24
+      marginHorizontal: 15,
     },
     heroSubtitle: {
       fontFamily,
       color: '#999',
       fontSize: 14,
     },
+    heroButton:{
+      flex: 1,
+      marginHorizontal: 24,
+    },
     homeScreen:{
       flex: 1,
-      paddingTop: 435
+      bottom: -35
     }, 
     colorContainer:{
       width:350, 

@@ -11,6 +11,8 @@ import ColorPicker from 'react-native-wheel-color-picker';
 import { changeRPMThreshold } from '../components/RPM';
 import { changeSpeedThreshold } from '../components/Speed';
 
+import { FontAwesome5 } from '@expo/vector-icons'; 
+
 const FeaturesScreen = ({ navigation }) => {
   state = {
     refreshing: false,
@@ -22,8 +24,14 @@ const FeaturesScreen = ({ navigation }) => {
 
   const renderHero = () => (
     <View style={styles.heroContainer}>
-      <View style={{ flex: 1 }}>
-        <Text style={styles.heroTitle}>Settings </Text>
+      <View style = {{flexDirection: 'row'}}>
+        <Text style = {styles.heroTitle}>Settings                            </Text>
+        
+        <FontAwesome5.Button style = {{ bottom:0, alignSelf:'flex-end'}} 
+                            name = "info-circle" size = {24} 
+                            color = "black" backgroundColor = "white" 
+                            onPress={() => navigation.navigate('Help')}></FontAwesome5.Button>
+       
       </View>
     </View>
   )
@@ -233,7 +241,7 @@ const FeaturesScreen = ({ navigation }) => {
                 renderAccessory: () => <Button title=">" onPress={() => navigation.navigate('Layout')} />
               }, 
               {
-                title: 'Reset Layout',
+                title: 'Reset All Settings',
                 renderAccessory: () => <Button title="Reset" onPress={() => resetSettings()} />
               }, 
             ],
