@@ -1,25 +1,45 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
 import { SettingsContext, storage } from '../context/settingsContext';
 import { updateTirePressure } from '../components/TirePressure';
-import { updateGasLevel, isLow } from '../components/Gas';
-import { updateRPM, isHigh } from '../components/RPM';
 import { updateSeatbelt } from '../components/Seatbelt';
-
+import { gasThreshold } from '../components/Gas';
+import { rpmThreshold } from '../components/RPM';
 import { styles } from '../components/Styles';
 import { updateSpeed } from '../components/Speed';
 
 const DeveloperScreen = ({ navigation }) => {
   const { settings, setSettings } = useContext(SettingsContext);
 
+  let isLow = settings['gasLow'] || false;
+  let currentGas = settings['gasLevel'] ? settings['gasLevel'] : 100;
+
+  useEffect(() => {
+    let newSettings = Object.assign({}, settings);
+    newSettings['gasLow'] = isLow;
+    newSettings['gasLevel'] = currentGas;
+
+    if (!newSettings['RPMThreshold']) {
+      newSettings['RPMThreshold'] = 2000;
+    }
+  
+    setSettings(newSettings);
+
+    storage.save({
+      key: 'settings',
+      data: newSettings,
+    })
+  }, []);
+
   const handleTirePressure = (pressure) => {
     updateTirePressure(pressure)
   }
   const handleGasLevel = (gas) => {
-    updateGasLevel(gas)
+    currentGas = gas;
 
     let newSettings = Object.assign({}, settings);
-    newSettings['gasLow'] = isLow;
+    newSettings['gasLow'] = currentGas < gasThreshold;
+    newSettings['gasLevel'] = currentGas;
   
     setSettings(newSettings);
 
@@ -31,10 +51,12 @@ const DeveloperScreen = ({ navigation }) => {
     console.log("NEW SETTINGS DEV", newSettings);
   }
   const handleRPM = (rpm) => {
-    updateRPM(rpm)
+    console.log("RPM", rpm, settings, rpmThreshold);
+    currentRPM = rpm;
 
     let newSettings = Object.assign({}, settings);
-    newSettings['rpmHigh'] = isHigh;
+    newSettings['rpmHigh'] = currentRPM > rpmThreshold;
+    newSettings['rpmLevel'] = currentRPM;
 
     setSettings(newSettings);
 
@@ -54,8 +76,21 @@ const DeveloperScreen = ({ navigation }) => {
   // Sets all values to numbers that would set off alerts and goes to the app
   const turnOnAllAlerts = () => {
     updateTirePressure(25)
-    updateGasLevel(20)
-    updateRPM(3000)
+
+    let newSettings = Object.assign({}, settings);
+    newSettings['gasLow'] = true;
+    newSettings['gasLevel'] = 20;
+    
+    newSettings['rpmHigh'] = true;
+    newSettings['rpmLevel'] = 3000;
+
+    setSettings(newSettings);
+
+    storage.save({
+      key: 'settings',
+      data: newSettings,
+    });
+
     updateSeatbelt(false)
     // updateSpeed(100)
     navigation.navigate('Application')

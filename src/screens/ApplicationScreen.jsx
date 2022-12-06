@@ -159,7 +159,6 @@ const ApplicationScreen = ({ navigation }) => {
       }
     }
     else if (item == 'GasMode') {
-      console.log("GASMODE", item, settings[item], components[item]);
       console.log("TEST", settings[item] != 1);
       if (settings[item] != null && settings[item] != 1) {
         console.log('here');
@@ -181,6 +180,46 @@ const ApplicationScreen = ({ navigation }) => {
           marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
           }}>
             <Gas />
+          </View>
+        ) : (
+          <View
+          style={{
+          width: (width < height ? width / 3.5 : width / 5.5),
+          height: width < height ? width / 3.5 : height / 3,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginLeft: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
+          marginRight: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
+          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          }}>
+          </View>
+        )
+      }
+      return;
+    } 
+    else if (item == 'RPM') {
+      if (settings[item]) {
+        return settings['rpmHigh'] ? (
+          <View
+          style={{
+          width: (width < height ? width / 3.5 : width / 5.5),
+          height: width < height ? width / 3.5 : height / 3,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: 'solid',
+          borderWidth: '1px',
+          borderRadius: '35',
+          marginLeft: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
+          marginRight: (width < height ? 0.0238095238 * width : 0.03409090909 * width / 2),
+          marginTop: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height,
+          marginBottom: width < height ? 0.03409090909 * height / 2 : 0.08333333333 * height
+          }}>
+            <RPM />
           </View>
         ) : (
           <View
