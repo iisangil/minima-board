@@ -47,7 +47,13 @@ export const styles = StyleSheet.create({
     button:{
       alignSelf: 'center',
       position: 'absolute',
-      bottom: 35
+      bottom: 35,
+      
+    },
+    button2:{
+      alignSelf: 'center',
+      paddingTop: 420,
+
     },
     bottomscreen:{
       lignSelf: 'center',
@@ -127,7 +133,7 @@ export const styles = StyleSheet.create({
     },
     homeScreen:{
       flex: 1,
-      paddingTop: 435
+      bottom: -35
     }, 
     colorContainer:{
       width:350, 

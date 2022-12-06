@@ -13,6 +13,16 @@ export function HomeScreen({ navigation }) {
     <View style={{ flex: 1}}>
       <ImageBackground source={bkimage} resizeMode="cover" style={styles.image}>
         
+      <View style = {styles.button2}>
+        
+          <Button
+          title="Start Application"
+          color={'red'}
+          onPress={() => navigation.navigate("Application")}
+          />
+
+        </View>
+
         <View style={styles.homeScreen}>
           <Button
             title="Change Settings"
@@ -22,18 +32,26 @@ export function HomeScreen({ navigation }) {
             title="Choose Display"
             onPress={() => navigation.navigate('Display')}
           />
-          <Button
-          title="Start Application"
+          <Button 
+          title="Tutorial"
           onPress={() => navigation.navigate("Application")}
           />
+          
         </View>
         
+        
+
         <View style={styles.button}>
+        
             <Button
             title="Developer Tools"
             onPress={() => navigation.navigate("Developer")}
             />
         </View>
+
+        
+
+        
         
       </ImageBackground>
       
