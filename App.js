@@ -10,7 +10,7 @@ import * as ScreenOrientation from 'expo-screen-orientation'
 import DialogInput from 'react-native-dialog-input';
 
 import { HomeScreen } from './src/screens/HomeScreen';
-import { BaseDisplayScreen } from './src/screens/BaseDisplayScreen.js';
+import { BaseDisplayScreen } from './src/screens/BaseDisplayScreen.jsx';
 import { DefaultDisplayScreen } from './src/screens/DefaultDisplayScreen.js';
 import ApplicationScreen from './src/screens/ApplicationScreen';
 import FeaturesScreen from './src/screens/FeaturesScreen';
@@ -88,6 +88,7 @@ function App() {
 
     let newSettings = Object.assign({}, settings);
     let savedSettings = Object.assign({}, settings);
+    delete savedSettings['savedSettings'];
 
     if (!newSettings['savedSettings']) {
       newSettings['savedSettings'] = {};
@@ -109,6 +110,7 @@ function App() {
         data: newSettings,
       });
 
+      alert('Successfully saved!');
     }
   }
 

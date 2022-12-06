@@ -37,7 +37,6 @@ const FeaturesScreen = ({ navigation }) => {
   )
 
   const resetSettings = () => {
-    let newSettings = Object.assign({}, settings);
     setSettings({});
 
     storage.save({
@@ -46,7 +45,7 @@ const FeaturesScreen = ({ navigation }) => {
     });
 
     alert("You have reset the app to default settings!");
-    console.log("Reset Settings", newSettings);
+    console.log("Reset Settings", settings);
   }
 
   const changeTheme = () => {
