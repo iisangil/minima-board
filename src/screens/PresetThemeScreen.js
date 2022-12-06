@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, Button, StyleSheet, ImageBackground, Pressable} from 'react-native';
 import { SettingsContext, storage } from '../context/settingsContext';
 import { useContext } from 'react';
-import { styles } from '../components/Styles';
+import { Ionicons } from '@expo/vector-icons';
 
 export function PresetThemeScreen({navigation}){
     const { settings, setSettings } = useContext(SettingsContext);
@@ -22,6 +22,12 @@ export function PresetThemeScreen({navigation}){
         } else if (theme === 'snow') {
             background = '#D8DEE9'
             fontColor = '#667799'
+        } else if (theme === 'beach') {
+            background = '#FFE9CE'
+            fontColor = '#3777FF'
+        } else if (theme === 'ocean') {
+            background = '#4059AD'
+            fontColor = '#6B9AC4'
         }
 
         let newSettings = Object.assign({}, settings);
@@ -39,8 +45,9 @@ export function PresetThemeScreen({navigation}){
     }
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{fontSize:'32', color: settings['FontColor']}}><Ionicons name="color-palette-outline" size={32} /> = Colorblind Friendly</Text>
         <Pressable style={{alignItems: 'center', justifyContent: 'center', paddingVertical: 12, paddingHorizontal: 32,borderRadius: 4, elevation: 3, backgroundColor:'#F2F2F7'}} onPress={() => setTheme('light')}>
-            <Text style={{fontSize:'32', color:'#000000'}}>Light Mode</Text>
+            <Text style={{fontSize:'32', color:'#000000'}}>Light Mode <Ionicons name="color-palette-outline" size={32} /></Text>
         </Pressable>
         <Pressable style={{alignItems: 'center', justifyContent: 'center', paddingVertical: 12, paddingHorizontal: 32,borderRadius: 4, elevation: 3, backgroundColor:'#121212'}} onPress={() => setTheme('dark')}>
             <Text style={{fontSize:'32', color:'#8E8E93'}}>Dark Mode</Text>
@@ -50,6 +57,12 @@ export function PresetThemeScreen({navigation}){
         </Pressable>
         <Pressable style={{alignItems: 'center', justifyContent: 'center', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 4, elevation: 3, backgroundColor:'#D8DEE9'}} onPress={() => setTheme('snow')}>
             <Text style={{fontSize:'32', color:'#667799'}}>Snow Storm</Text>
+        </Pressable>
+        <Pressable style={{alignItems: 'center', justifyContent: 'center', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 4, elevation: 3, backgroundColor:'#FFE9CE'}} onPress={() => setTheme('beach')}>
+            <Text style={{fontSize:'32', color:'#3777FF'}}>Beach <Ionicons name="color-palette-outline" size={32} /></Text>
+        </Pressable>
+        <Pressable style={{alignItems: 'center', justifyContent: 'center', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 4, elevation: 3, backgroundColor:'#4059AD'}} onPress={() => setTheme('ocean')}>
+            <Text style={{fontSize:'32', color:'#6B9AC4'}}>Ocean <Ionicons name="color-palette-outline" size={32} /></Text>
         </Pressable>
         <Button title="Back to Settings" color={settings["FontColor"]} onPress={() => navigation.navigate('Settings')} />
       </View>

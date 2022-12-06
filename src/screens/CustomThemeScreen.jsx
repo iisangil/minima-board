@@ -102,6 +102,13 @@ export function CustomThemeScreen({navigation}){
         navigation.navigate('Settings') 
     }
 
+    var exampleThemeBackground = settings["Background"]
+    var exampleThemeFont = settings["Background"]
+    if (selected != "") {
+        exampleThemeBackground = themes[selected]['Background']
+        exampleThemeFont = themes[selected]['FontColor']
+    }
+
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Modal isVisible={isModalVisible} avoidKeyboard={true} backdropOpacity={.90} backdropColor={settings["Background"]}>
@@ -115,6 +122,10 @@ export function CustomThemeScreen({navigation}){
             <Button title="Save Theme" onPress={saveTheme} color={settings["FontColor"]}/>
             <Button title="Cancel" onPress={toggleModal} color={settings["FontColor"]}/>
         </Modal>
+
+        <Text style={{fontSize: 42, margin: 35, backgroundColor: exampleThemeBackground, color: exampleThemeFont}}>
+            Example Text
+        </Text>
 
         <SelectList 
             placeholder="Select Custom Theme"
