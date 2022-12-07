@@ -27,6 +27,7 @@
     "react": "^18.0.0",
     "react-color": "^2.19.3",
     "react-dom": "^18.2.0",
+    "react-dyslexia": "^0.4.11",
     "react-native": "^0.69.6",
     "react-native-anchor-point": "^1.0.6",
     "react-native-color-picker": "^0.6.0",

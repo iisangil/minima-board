@@ -28,10 +28,16 @@ export const SelectType = (newType) => {
 const PickerComponent = (component) => {
 
     const { settings, setSettings } = useContext(SettingsContext);
+    type = settings["colorType"];
+
+
+    // let textStyle = Object.assign({}, styles.text);
+    // textStyle['color'] = settings["FontColor"];
 
     
     const selectColor = (color, type) => {
-        console.log(type)
+        console.log("========================the type=======================");
+        console.log(type);
         let newSettings = Object.assign({}, settings);
 
         newSettings[type] = color;
@@ -50,7 +56,7 @@ const PickerComponent = (component) => {
 
     return (
         <View>
-            <Text style={styles.colorText}>
+            <Text style={{color: settings['FontColor'], fontSize: 42, lineHeight: 84, fontWeight: "bold", textAlign: "center"}}>
                 Click circle to save
             </Text>
             <ColorPicker
