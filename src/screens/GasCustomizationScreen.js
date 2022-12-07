@@ -51,7 +51,7 @@ export function GasCustomizationScreen({navigation}) {
        <SelectList setSelected={setSelected} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} data={data} save="value" onSelect={() => selectGasMode(selected)}/>
 
 
-        <Button title="Back to Home" onPress={() => navigation.navigate('Home')} />
+        <Button title="Back to Settings" onPress={() => navigation.navigate('Settings')} />
       </View>
     );
   }

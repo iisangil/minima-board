@@ -1,11 +1,16 @@
 import * as React from 'react';
-import { View, Text, Button, StyleSheet, TextInput, Pressable} from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, Pressable, RefreshControl} from 'react-native';
 import { SettingsContext, storage } from '../context/settingsContext';
 import { useContext, useState} from 'react';
 import { styles } from '../components/Styles';
 import Modal from "react-native-modal";
 import SelectList from 'react-native-dropdown-select-list'
 import { FontAwesome } from '@expo/vector-icons';
+
+import {DevSettings} from 'react-native';
+
+// Just call reload method 
+
 
 var themes = {}
 var data = []
@@ -15,6 +20,15 @@ export function CustomThemeScreen({navigation}){
     const [selected, setSelected] = React.useState("");
     const [isModalVisible, setModalVisible] = useState(false);
     const [name, onChangeName] = React.useState(null);
+
+    const [refreshing, setRefreshing] = React.useState(false);
+  
+    const onRefresh = () => {
+      setRefreshing(true);
+      setTimeout(() => {
+        setRefreshing(false);
+      }, 2000);
+    };
 
     const loadThemes = () => {
         storage.load({
@@ -73,6 +87,7 @@ export function CustomThemeScreen({navigation}){
         // not refresh when data updates. Not sure if it is because I'm doing it wrong or if the library has a bug,
         // but from my understanding it should just update when the state does.
         navigation.navigate('Settings')
+        // DevSettings.reload()
     }
 
     let inputStyle = Object.assign({}, styles.input);
@@ -99,7 +114,10 @@ export function CustomThemeScreen({navigation}){
 
         loadThemes()
         toggleModal()
-        navigation.navigate('Settings') 
+
+        
+
+        navigation.navigate('Settings')
     }
 
     var exampleThemeBackground = settings["Background"]

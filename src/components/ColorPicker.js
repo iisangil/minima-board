@@ -56,7 +56,7 @@ const PickerComponent = (component) => {
 
     return (
         <View>
-            <Text style={{color: settings['FontColor'], fontSize: 42, lineHeight: 84, fontWeight: "bold", textAlign: "center"}}>
+            <Text style={{color: settings['FontColor'], fontSize: 25, lineHeight: 84, fontWeight: "bold", textAlign: "center"}}>
                 Click circle to save
             </Text>
             <ColorPicker
