@@ -13,4 +13,6 @@ Follow instructions here: https://reactnative.dev/docs/environment-setup
 
 7) You will need to install all necessary packages
 
+If there are any issues you may need to update versions for yarn. Yarn start should, in theory, fix most issues.
+
 
