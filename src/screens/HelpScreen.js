@@ -44,7 +44,7 @@ export function HelpScreen({navigation}){
     return (
         <Onboarding
         DotComponent={Square}
-        skipToPage={7}
+        skipToPage={8}
         DoneButtonComponent={Done}
         onDone={()=> {
             navigation.navigate("Home")
@@ -89,21 +89,28 @@ export function HelpScreen({navigation}){
           }, 
           {
             backgroundColor: '#8DC8E4',
-            image: <Image style={{position: 'relative', bottom: 50, marginVertical: -60}} source={require('../images/display.png')} />,
-            title: 'Settings: Display layout',
+            image: <Image style={{position: 'relative', bottom: 50, marginVertical: -80}} source={require('../images/layout.png')} />,
+            title: 'Settings: Customize Display layout',
             titleStyles: {fontWeight: 'bold'},
             subtitle: 'Customize display layout by holding and dragging icons on the screen, or reset layout to default',
           }, 
           {
             backgroundColor: '#8DC8E4',
-            image: <Image source={require('../images/logo_small.gif')} />,
-            title: 'Displays',
+            image: <Image style={{position: 'relative', bottom: 50, marginVertical: -60}} source={require('../images/themes.png')} />,
+            title: 'Settings: Save Custom Theme',
+            titleStyles: {fontWeight: 'bold'},
+            subtitle: 'Save your custom theme and use the drop down to select it',
+          },
+          {
+            backgroundColor: '#8DC8E4',
+            image: <Image style={{position: 'relative', bottom: 50, marginVertical: -60}} source={require('../images/select.png')} />,
+            title: 'Displays: selecting',
             titleStyles: {fontWeight: 'bold'},
             subtitle: 'Choose a preset display or a saved custom display',
           }, 
           {
             backgroundColor: '#8DC8E4',
-            image: <Image source={require('../images/logo_small.gif')} />,
+            image: <Image source={require('../images/start.png')} />,
             title: 'Starting the App',
             titleStyles: {fontWeight: 'bold'},
             subtitle: 'After selecting a display and choosing your settings, start the app by pressing "Start Application"',
