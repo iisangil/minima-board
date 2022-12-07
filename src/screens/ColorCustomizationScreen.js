@@ -37,7 +37,7 @@ export function ColorCustomizationScreen({navigation}){
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <PickerComponent/>
-        <Button title="Back to Home" onPress={() => navigation.navigate('Settings')} />
+        <Button title="Back to Settings" onPress={() => navigation.navigate('Settings')} />
       </View>
     );
   }

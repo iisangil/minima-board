@@ -123,8 +123,8 @@ export function CustomThemeScreen({navigation}){
             <Button title="Cancel" onPress={toggleModal} color={settings["FontColor"]}/>
         </Modal>
 
-        <Text style={{fontSize: 42, margin: 35, backgroundColor: exampleThemeBackground, color: exampleThemeFont}}>
-            Example Text
+        <Text style={{fontSize: 42, margin: 35, backgroundColor: exampleThemeBackground, color: exampleThemeFont, borderColor: 'black'}}>
+            Theme Preview
         </Text>
 
         <SelectList 
@@ -138,10 +138,11 @@ export function CustomThemeScreen({navigation}){
             data={data} 
             save="value"
             search={false}
+            onSelect={() => setTheme(selected)}
             arrowicon={<FontAwesome name="chevron-down" size={12} color={settings['FontColor']} />}
         />
 
-        <Button title="Choose Selected Theme" color={settings["FontColor"]} onPress={() => setTheme(selected)} />
+        {/* <Button title="Choose Selected Theme" color={settings["FontColor"]} onPress={() => setTheme(selected)} /> */}
         <Button title="Delete Selected Theme" color={settings["FontColor"]} onPress={deleteTheme} />
         <Button title="Save Current Theme" color={settings["FontColor"]} onPress={toggleModal} />
         <Button title="Back to Settings" color={settings["FontColor"]} onPress={() => navigation.navigate('Settings')} />
