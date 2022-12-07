@@ -159,7 +159,7 @@ const ApplicationScreen = ({ navigation }) => {
           marginTop: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
           marginBottom: width < height ? 0.03409090909 * height / 4 : 0.03409090909 * width / 3.7,
           }}>
-            <Gas />
+            <Gas show={false} />
           </View>
         ) : (
           <View

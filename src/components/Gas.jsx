@@ -18,7 +18,7 @@ export var gasThreshold = 25;
 //   currentGas = gasLevel
 // }
 
-function Gas(show) {
+function Gas(props) {
   const { settings, setSettings } = useContext(SettingsContext);
   console.log('settings in gas', settings);
   console.log("TEST EQUALITY", settings['gasLow'] || false);
@@ -92,7 +92,7 @@ function Gas(show) {
   let subtextStyle = Object.assign({}, styles.subText);
   subtextStyle['color'] = settings["FontColor"];
 
-  return settings["GasMode"] == 2 && isLow || show ? (
+  return settings["GasMode"] == 2 && isLow || props.show ? (
     <View>    
       <FontAwesome5 name={"gas-pump"} size={42} color={settings['FontColor'] ? settings['FontColor'] : '#808080'} onPress={gasInfo}>
       <Text style={textStyle}> {currentGas}</Text>
