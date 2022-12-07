@@ -4,6 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const SettingsContext = createContext()
 
+export const CustomThemes = createContext()
+
 export const storage = new Storage({
   // maximum capacity, default 1000 key-ids
   size: 1000,

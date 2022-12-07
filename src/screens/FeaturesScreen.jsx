@@ -125,6 +125,11 @@ const FeaturesScreen = ({ navigation }) => {
                 renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('PresetThemes')} />
               },
               {
+                title: 'Custom Themes',
+                subtitle: 'Custom Themes for Font and Background',
+                renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('CustomThemes')} />
+              },
+              {
                 title: 'Application background',
                 subtitle: 'Change application background color',
                 renderAccessory:() => <Button title=">" onPress={() => navigation.navigate('ColorCustomization')} />
